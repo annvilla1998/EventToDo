@@ -13,6 +13,7 @@ class Event(db.Model):
 
     comments = db.relationship("Comment", back_populates="events", cascade="all, delete")
     users = db.relationship("User", back_populates="events")
+    tasks = db.relationship("Task", back_populates="events")
 
     def to_dict(self):
         return {
