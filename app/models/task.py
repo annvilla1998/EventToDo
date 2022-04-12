@@ -28,6 +28,6 @@ class Task(db.Model):
             'event_id': self.event_id,
             'user_id': self.user_id,
             'updated_at': self.updated_at,
-            'users': self.users.to_dict(), 
-            'events': self.events.to_dict(),
+            'users': {user.id: user.to_dict() for user in self.users}, 
+            'events': {event.id: event.to_dict() for event in self.events},
         }

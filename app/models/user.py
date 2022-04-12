@@ -33,7 +33,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             "profile_image": self.profile_image,
-            # 'events': self.events.to_dict(),
-            'tasks':{task.id, task.to_dict(), for task in },
+            'events': {event.id, event.to_dict(), for event in self.events},
+            'tasks':{task.id, task.to_dict(), for task in self.tasks},
             'comments': {comment.id: comment.to_dict() for comment in self.comments},
         }

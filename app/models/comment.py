@@ -23,5 +23,5 @@ class Comment(db.Model):
             'user_id': self.user_id,
             'updated_at': self.updated_at,
             'events': self.events.to_dict(),
-            'users': self.users.to_dict(),
+            'users': {user.id: user.to_dict() for user in self.users},
         }

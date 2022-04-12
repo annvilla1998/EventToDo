@@ -21,5 +21,5 @@ class Event(db.Model):
             'name': self.name,
             'user_id': self.user_id,
             'updated_at': self.updated_at,
-            'users': self.users.to_dict(), 
+            'users': {event.id: event.to_dict() for event in self.events}, 
         }
