@@ -14,10 +14,10 @@ export const EventFormModal = () => {
     const onSubmit = async(e) => {
         e.preventDefault()
 
-        const event = (
-            eventName,
+        const event = {
+            name: eventName,
             user_id: sessionUser.id
-        )
+        }
         dispatch(createEvent(event))
 
     }
