@@ -12,7 +12,7 @@ class Event(db.Model):
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)    
 
     comments = db.relationship("Comment", back_populates="events", cascade="all, delete")
-    users = db.relationship("User", back_populates="events")
+    users = db.relationship("User", back_populates="events", lazy='subquery')
     tasks = db.relationship("Task", back_populates="events")
 
     def to_dict(self):
@@ -21,5 +21,5 @@ class Event(db.Model):
             'name': self.name,
             'user_id': self.user_id,
             'updated_at': self.updated_at,
-            'users': {event.id: event.to_dict() for event in self.events}, 
+            # 'users': self.users.to_dict(), 
         }
