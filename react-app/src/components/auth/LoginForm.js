@@ -35,7 +35,7 @@ const LoginForm = () => {
     <div className='loginFormContainer'>
       <div className="loginForm">
           <div className="loginLogo">
-            eventtodo<img src="logo.png"/>
+            eventtodo<img alt="logo" src="logo.png"/>
           </div>
           <div className="loginFormContent">
               <h1>Log in</h1>

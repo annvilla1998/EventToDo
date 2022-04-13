@@ -1,0 +1,46 @@
+
+import React from 'react';
+import { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom';
+import LogoutButton from '../auth/LogoutButton';
+import { NavBarDropDown } from '../NavBarDropDown/index'
+import './NavBar.css'
+
+const NavBar = ({ user }) => {
+  const [showDropDown, setShowDropDown] = useState(false)
+
+  const clickHandler = () => {
+    showDropDown === false ? setShowDropDown(true) : setShowDropDown(false)
+  }
+
+  useEffect(() => {
+    if (!showDropDown) return;
+
+    const closeMenu = () => {
+        setShowDropDown(false);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showDropDown]);
+
+
+
+  return (
+    <nav className="navBar">       
+        <div className='navbarDropDownContainer'>
+            <img
+                src={user.profile_image}
+                className='navbarProfilePhoto'
+                onClick={clickHandler}
+                alt='profile pic' />
+            {showDropDown &&
+                <NavBarDropDown user={user} />
+            }
+        </div>
+    </nav>
+  );
+}
+
+export default NavBar;
