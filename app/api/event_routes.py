@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.models import Event, db, Task, Comment, User
 from flask_login import current_user, login_required
 from datetime import datetime, timezone
@@ -13,8 +13,14 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{error}')
     return errorMessages
 
-# @event_routes.route('/')
-# @login_required
-# def read_events():
-#     user = User.query.get(current_user.id)
+@event_routes.route('/', methods=["POST"])
+def post_event():
+    data = request.get_json(force=True)
     
+    new_event = Event(
+        name = data["name"],
+        user_id = data["user_id"],
+    )
+    db.session.add(new_event)
+    db.session.commit()
+    return new_event.to_dict()

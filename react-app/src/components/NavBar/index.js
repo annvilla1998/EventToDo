@@ -1,8 +1,6 @@
 
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 import { NavBarDropDown } from '../NavBarDropDown/index'
 import './NavBar.css'
 
@@ -32,8 +30,8 @@ const NavBar = ({ user }) => {
         <div className='navbarDropDownContainer'>
             <img
                 src={user.profile_image}
-                className='navbarProfilePhoto'
                 onClick={clickHandler}
+                className='navbar-profile-photo'
                 alt='profile pic' />
             {showDropDown &&
                 <NavBarDropDown user={user} />

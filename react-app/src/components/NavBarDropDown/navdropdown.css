@@ -1,0 +1,21 @@
+.navbarDropDownMenu {
+    position: absolute;
+    right: -15px;
+    top: 42px;
+    background-color: white;
+    padding: 5px;
+    box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
+    border-radius: 3px;
+    width: 100px;
+    z-index: 4;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+
+.navbarDropDownList a {
+    text-decoration: none;
+    color: black;
+    display:flex;
+    flex-direction: column;
+}
