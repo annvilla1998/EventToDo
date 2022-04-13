@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactDOM from 'react-dom';
 import { useState } from 'react';
 import './eventformmodal.css'
 import { createEvent } from '../../store/events';
@@ -22,8 +21,8 @@ export const EventFormModal = () => {
 
     }
 
-    return display && mount && ReactDOM.createPortal(
-    <div className='event-modal-background' onClick={closeModal}>
+    return (
+    <div className='event-modal-background' >
         <div >
         <form onSubmit={onSubmit}>
             <label>Name</label>
@@ -36,7 +35,7 @@ export const EventFormModal = () => {
         <button type="submit">Start Planning</button>
         </div>
     </div>
-    , mount)
+    )
 }
 
 export default Modal;
