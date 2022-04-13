@@ -1,4 +1,4 @@
-
+import './comments.css'
 
 export const Comments = () => {
 

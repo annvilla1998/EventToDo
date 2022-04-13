@@ -1,0 +1,95 @@
+.loginForm{
+    width: 500px;
+    padding: 25px;
+    border-radius: 8px;
+    border: solid 1px #323231;
+    margin: 150px 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.loginFormContainer {
+    display:flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}
+
+.loginLogo {
+    display:flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    color: #00C78F;
+    font-weight: bold;
+    justify-content: flex-end;
+}
+
+.loginLogo img{
+    width: 60px;
+    height: 60px;
+}
+
+
+.loginFormContent h1 {
+    font-size: 26px;
+    font-weight: 700px;
+    margin: 0 0 1em;
+    padding: 0;
+}
+
+.loginFormContent form {
+    margin-top:30px;
+}
+
+.loginFormContent input {
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing:border-box;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 0.75em 1em;
+    width:100%;
+}
+
+.login-inputs {
+    margin: 10px 0;
+}
+
+.loginFormContent label {
+    display: block;
+    font-size: 13px;
+    font-weight:700;
+    margin-bottom: 5px;
+}
+
+.loginFormContent button {
+    box-sizing: border-box;
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    height: auto;
+    padding: 9px 12px;
+    text-align: center;
+    width: 100%;
+    background-color:#00A173;
+    border-radius: 5px;
+    color: white;
+}
+
+.signupLink {
+    border-top: 1px solid black;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.signupLink p {
+    margin: 20px;
+}
+
+.signupLink a {
+    text-decoration: none;
+    margin-left: 10px;
+    color: #00C78F;
+}
