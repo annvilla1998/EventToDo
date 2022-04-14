@@ -109,7 +109,6 @@ export default function eventsReducer(state= initialState, action) {
             newState.events[action.payload.id] = action.payload
             return newState
         case EDIT_EVENT:
-
             newState.events[action.payload.id] = action.payload
             return newState
         case DELETE_EVENT:
