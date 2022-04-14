@@ -9,6 +9,7 @@ import UsersList from './components/User/UsersList';
 import User from './components/User/User';
 import { authenticate } from './store/session';
 import {SideBar} from './components/SideBar'
+// import { Events } from './components/Events/index'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
