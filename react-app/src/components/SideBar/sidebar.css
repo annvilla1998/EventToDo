@@ -26,20 +26,17 @@
 .event-list-items {
     display:flex;
     flex-direction:column;
+    gap: 10px;
+    overflow-x:auto;
 }
 
 .event-list-items a {
     text-decoration: none;
     color: black;
+    padding-left: 15px;
+    padding-bottom: 5px;;
 }
 
-.event-list-items a:hover {
-    background-color: #1D1E22;
-}
-
-.fa-plus {
-    font-size: 50px;
-}
 
 .event-form-modal {
     width: 450px;
@@ -77,4 +74,19 @@
     border-radius: 2px;
     border: 1px solid rgb(0, 0, 0, 0.1);
     background-color:#00A173;
+}
+
+.add-event-h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 20px
+}
+
+.add-event-h2 i {
+    font-size:35px;
+}
+
+.add-event-h2 i:hover {
+    opacity: 0.5;
 }

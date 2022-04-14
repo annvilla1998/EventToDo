@@ -18,7 +18,12 @@ def validation_errors_to_error_messages(validation_errors):
 def get_events():
     user = User.query.get(current_user.id)
     events = Event.query.filter(Event.user_id == user.id).all()
-    return { 'events': [events.to_dict() for events in events]}
+    events_dictionary = {}
+    for event in events:
+        event.to_dict()
+        events_dictionary[event.id] = event.to_dict()
+        # print(events_dictionary)
+    return events_dictionary
 
 @event_routes.route('/', methods=["POST"])
 def post_event():
@@ -40,11 +45,11 @@ def post_event():
 @event_routes.route('/<id>', methods=["PUT","DELETE"])
 def edit_delete_event(id):
     if request.method == "PUT":
+        data = request.get_json(force=True)
         form = EventForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             event = Event.query.filter(Event.id == id).first()
-            data = request.get_json(force=True)
             event.user_id = data["user_id"]
             event.name = data["name"]
 
