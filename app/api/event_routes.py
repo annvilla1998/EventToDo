@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.models import Event, db, Task, Comment, User
 from flask_login import current_user, login_required
 from datetime import datetime, timezone
+from app.forms.event_form import EventForm
 
 
 event_routes = Blueprint('events', __name__)
@@ -22,24 +23,38 @@ def get_events():
 @event_routes.route('/', methods=["POST"])
 def post_event():
     data = request.get_json(force=True)
-    
-    new_event = Event(
-        name = data["name"],
-        user_id = data["user_id"],
-    )
-    db.session.add(new_event)
-    db.session.commit()
-    return new_event.to_dict()
+    form = EventForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+
+        new_event = Event(
+            name = data["name"],
+            user_id = data["user_id"],
+        )
+        db.session.add(new_event)
+        db.session.commit()
+        return new_event.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@event_routes.route('/<id>', methods=["PUT"])
+@event_routes.route('/<id>', methods=["PUT","DELETE"])
 def edit_delete_event(id):
     if request.method == "PUT":
-        event = Event.query.filter(Event.id == id).first()
-        data = request.get_json(force=True)
-        event.user_id = data["user_id"]
-        event.name = data["name"]
+        form = EventForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            event = Event.query.filter(Event.id == id).first()
+            data = request.get_json(force=True)
+            event.user_id = data["user_id"]
+            event.name = data["name"]
 
-        db.session.add(event)
+            db.session.add(event)
+            db.session.commit()
+            return event.to_dict()
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    
+    elif request.method == "DELETE":
+        event = Event.query.filter(Event.id == id).first()
+        db.session.delete(event)
         db.session.commit()
         return event.to_dict()

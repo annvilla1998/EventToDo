@@ -1,6 +1,7 @@
 const GET_EVENTS = 'session/GET_EVENTS'
 const CREATE_EVENT = 'session/CREATE_EVENT';
-const EDIT_EVENT = 'session/EDIT_EVENT'
+const EDIT_EVENT = 'session/EDIT_EVENT';
+const DELETE_EVENT = 'session/DELETE_EVENT'
 
 export const addEvent = (event) => ({
     type: CREATE_EVENT,
@@ -16,6 +17,23 @@ export const editEvent = (event) => ({
     type: EDIT_EVENT,
     payload: event
 }) 
+
+export const deleteEvent = (id) => ({
+    type: DELETE_EVENT,
+    payload: id
+})
+
+export const removeEvent = (id) => async(dispatch) => {
+    const res = await fetch(`api/events/${id}`, {
+        method:"DELETE"
+    })
+
+    if(res.ok) {
+        const event = await res.json()
+        await dispatch(deleteEvent(event))
+        return event
+    }
+}
 
 export const getAllEvents = () => async (dispatch) => {
     const res = await fetch(`/api/events/`)
@@ -37,7 +55,15 @@ export const createEvent = (event) => async (dispatch) => {
     if(res.ok) {
         const event = await res.json()
         await dispatch(addEvent(event))
-    }
+    }else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            // console.log(data.errors)
+          return data.errors;
+        }
+      } else {
+        return ['An error occurred. Please try again.']
+      }
 }
 
 export const editOneEvent = (event) => async (dispatch) => {
@@ -54,7 +80,14 @@ export const editOneEvent = (event) => async (dispatch) => {
         const event = await res.json()
         await dispatch(editEvent(event))
         return event
-    }
+    }else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ['An error occurred. Please try again.']
+      }
 }
 
 
@@ -67,15 +100,18 @@ export default function eventsReducer(state= initialState, action) {
 
     switch(action.type) {
         case GET_EVENTS:
-            action.payload.events.forEach(event => {
-               return newState.events[event.id] = event
-            })
+            action.payload.events.forEach(event => (
+               newState.events[event.id] = event
+            ))
             return newState
         case CREATE_EVENT:
             newState.events[action.payload.id] = action.payload
             return newState
         case EDIT_EVENT:
             newState.events[action.payload.id] = action.payload
+            return newState
+        case DELETE_EVENT:
+            delete newState.events[action.payload.id]
             return newState
         default:
         return state

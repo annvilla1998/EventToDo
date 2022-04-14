@@ -12,6 +12,7 @@ export const SideBar = () => {
 
     const [showModal, setShowModal] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false)
+    const [errors, setErrors] = useState([]);
 
 
     const dispatch = useDispatch();
@@ -25,9 +26,14 @@ export const SideBar = () => {
             name: eventName,
             user_id: sessionUser.id
         }
-        await dispatch(createEvent(event)).then(() => setIsLoaded(true))
-        setShowModal(false)
-        setEventName("")
+        const data = await dispatch(createEvent(event))
+        if (data) {
+            setErrors(data)
+        }else{
+            setShowModal(false)
+            setEventName("")
+        }
+        
         
     }
 
@@ -36,7 +42,7 @@ export const SideBar = () => {
 
     useEffect(() => {
       dispatch(getAllEvents()).then(() => setIsLoaded(true)) 
-    },[dispatch])
+    },[dispatch, isLoaded])
 
     return (
         <div className="sidebar-container">
@@ -49,11 +55,18 @@ export const SideBar = () => {
                         {showModal && (
                             <Modal onClose={() =>setShowModal(false)}>
                                 <div className="event-form-modal">
-                                    <div>
+                                    <h2>Add event</h2>
+                                    <div className="new-event-form">
                                     <form>
+                                        <div id="errors">
+                                            {errors.map((error, ind) => (
+                                                <div key={ind}>{error}</div>
+                                            ))}
+                                        </div>
                                         <label>Name</label>
                                         <input
                                         type='text'
+                                        required={true}
                                         value={eventName}
                                         onChange={e => setEventName(e.target.value)}
                                         />
@@ -64,15 +77,15 @@ export const SideBar = () => {
                             </ Modal>
                         )}
                     </div>
-                    {isLoaded &&
+                    {isLoaded && (
                         <div className="event-list-items">
                             {eventsArr.map(event => (
                                 <div key={event.id}>
-                                    <EditEvent  setIsLoaded={setIsLoaded} event={event}/>
+                                    <EditEvent setIsLoaded={setIsLoaded} dispatch={dispatch} event={event}/>
                                 </div>
                             ))}
                         </div>
-                    }
+                    )}
                 </div>
             </div>
             <div id="resizer"></div>

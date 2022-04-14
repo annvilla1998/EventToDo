@@ -23,8 +23,5 @@
   #modal-content {
     position: absolute;
     background-color:transparent;
-    border-radius: 30px;
     z-index: 20;
-    height: 400px;
-    width: 400px;
   }
