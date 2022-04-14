@@ -40,7 +40,7 @@ export const createEvent = (event) => async (dispatch) => {
     }
 }
 
-export const editOneEvent = (event) = async (dispatch) => {
+export const editOneEvent = (event) => async (dispatch) => {
     const res = await fetch(`/api/events/${event.id}`,{
         method: "PUT",
         headers: {
@@ -68,7 +68,7 @@ export default function eventsReducer(state= initialState, action) {
     switch(action.type) {
         case GET_EVENTS:
             action.payload.events.forEach(event => {
-               newState.events[event.id] = event
+               return newState.events[event.id] = event
             })
             return newState
         case CREATE_EVENT:
@@ -76,6 +76,8 @@ export default function eventsReducer(state= initialState, action) {
             return newState
         case EDIT_EVENT:
             newState.events[action.payload.id] = action.payload
+            return newState
+        default:
+        return state
     }
-    return state
 }

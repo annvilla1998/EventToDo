@@ -67,9 +67,9 @@ export const SideBar = () => {
                     {isLoaded &&
                         <div className="event-list-items">
                             {eventsArr.map(event => (
-                                <>
-                                    <EditEvent setIsLoaded={setIsLoaded} event={event}/>
-                                </>
+                                <div key={event.id}>
+                                    <EditEvent  setIsLoaded={setIsLoaded} event={event}/>
+                                </div>
                             ))}
                         </div>
                     }
