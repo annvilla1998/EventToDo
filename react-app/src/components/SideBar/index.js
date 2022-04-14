@@ -11,13 +11,18 @@ import { EditEvent} from '../EditEvent/index'
 export const SideBar = () => {
 
     const [showModal, setShowModal] = useState(false);
-    const [isLoaded, setIsLoaded] = useState(false)
     const [errors, setErrors] = useState([]);
-
-
+    const events = useSelector(state => state.pageState.events)
+    const eventsArr = Object.values(events)
     const dispatch = useDispatch();
     const [eventName, setEventName] = useState('')
     const sessionUser = useSelector(state => state.session.user);
+    
+    useEffect(() => {
+        (async () => (
+          await dispatch(getAllEvents())
+        ))();
+    },[dispatch])
 
     const onSubmit = async(e) => {
         e.preventDefault()
@@ -32,23 +37,15 @@ export const SideBar = () => {
         }else{
             setShowModal(false)
             setEventName("")
-        }
-        
-        
+        }    
     }
 
-    const events = useSelector(state => state.pageState.events)
-    const eventsArr = Object.values(events)
-
-    useEffect(() => {
-      dispatch(getAllEvents()).then(() => setIsLoaded(true)) 
-    },[dispatch, isLoaded])
 
     return (
         <div className="sidebar-container">
             <div className="sidebar-content">
                 <div className="events-list">
-                    <div>
+                    <div className="add-event-h2">
                         <h2>Events</h2>
                         <div><i onClick={() => setShowModal(true)} className="fa-solid fa-plus"></i>
                     </div>
@@ -77,15 +74,13 @@ export const SideBar = () => {
                             </ Modal>
                         )}
                     </div>
-                    {isLoaded && (
                         <div className="event-list-items">
                             {eventsArr.map(event => (
                                 <div key={event.id}>
-                                    <EditEvent setIsLoaded={setIsLoaded} dispatch={dispatch} event={event}/>
+                                    <EditEvent event={event}/>
                                 </div>
                             ))}
                         </div>
-                    )}
                 </div>
             </div>
             <div id="resizer"></div>

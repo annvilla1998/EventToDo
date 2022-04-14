@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Modal } from '../../context/modal';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { editOneEvent, removeEvent } from '../../store/events'
 import './editEvent.css'
 
 
-export const EditEvent = ({event, dispatch, setIsLoaded}) => {
+export const EditEvent = ({event}) => {
+    const dispatch = useDispatch()
     const [showModal, setShowModal] = useState(false)
     const [editedEventName, setEditedEventName] = useState(event.name)
     const sessionUser = useSelector(state => state.session.user);
-    // const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
-
 
 
     const handleEditEvent = async(e) => {
@@ -24,6 +23,7 @@ export const EditEvent = ({event, dispatch, setIsLoaded}) => {
             user_id: sessionUser.id
         }
         const data = await dispatch(editOneEvent(editedEvent))
+        console.log(data)
         if (data) {
             setErrors(data)
         }else {
@@ -31,18 +31,18 @@ export const EditEvent = ({event, dispatch, setIsLoaded}) => {
         }
     }
 
-
     const handleDeleteEvent = async(e) => {
         e.preventDefault()
-        await dispatch(removeEvent(event.id)).then(() => setIsLoaded(true))
-        setShowModal(false)
-        
+        await dispatch(removeEvent(event.id))
+        setShowModal(false)        
     }
 
     return (
         <>
+        <div className="event-link">
             <Link key={event.id} to={`/events/${event.id}`}>{event.name}</Link>
             <i onClick={() => setShowModal(true)} className="fa-solid fa-ellipsis"></i>
+        </div>
             {showModal && (
                 <Modal onClose={()=> setShowModal(false)}>
                     <div className="edit-event-form-modal">

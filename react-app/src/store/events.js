@@ -100,14 +100,16 @@ export default function eventsReducer(state= initialState, action) {
 
     switch(action.type) {
         case GET_EVENTS:
-            action.payload.events.forEach(event => (
-               newState.events[event.id] = event
-            ))
+            newState.events = action.payload
+            // action.payload.events.forEach(event => (
+            //    newState.events[event.id] = event
+            // ))
             return newState
         case CREATE_EVENT:
             newState.events[action.payload.id] = action.payload
             return newState
         case EDIT_EVENT:
+
             newState.events[action.payload.id] = action.payload
             return newState
         case DELETE_EVENT:
