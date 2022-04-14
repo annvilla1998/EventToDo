@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Modal } from '../../context/modal';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { editOneEvent, removeEvent } from '../../store/events'
+import './editEvent.css'
 
 
-export const EditEvent = ({event, setIsLoaded}) => {
+export const EditEvent = ({event, dispatch, setIsLoaded}) => {
     const [showModal, setShowModal] = useState(false)
     const [editedEventName, setEditedEventName] = useState(event.name)
     const sessionUser = useSelector(state => state.session.user);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
+    const [errors, setErrors] = useState([]);
 
 
 
@@ -21,14 +23,19 @@ export const EditEvent = ({event, setIsLoaded}) => {
             name: editedEventName,
             user_id: sessionUser.id
         }
-        await dispatch(editOneEvent(editedEvent)).then(() => setIsLoaded(true))
-        setShowModal(false)
+        const data = await dispatch(editOneEvent(editedEvent))
+        if (data) {
+            setErrors(data)
+        }else {
+            setShowModal(false)
+        }
     }
 
 
     const handleDeleteEvent = async(e) => {
         e.preventDefault()
-        await dispatch(removeEvent(event.id))
+        await dispatch(removeEvent(event.id)).then(() => setIsLoaded(true))
+        setShowModal(false)
         
     }
 
@@ -38,9 +45,15 @@ export const EditEvent = ({event, setIsLoaded}) => {
             <i onClick={() => setShowModal(true)} className="fa-solid fa-ellipsis"></i>
             {showModal && (
                 <Modal onClose={()=> setShowModal(false)}>
-                    <div className="event-form-modal">
-                        <div>
+                    <div className="edit-event-form-modal">
+                        <h2>Edit event</h2>
+                        <div className="edit-event-form">
                         <form>
+                            <div id="errors">
+                                {errors.map((error, ind) => (
+                                    <div key={ind}>{error}</div>
+                                ))}
+                            </div>
                             <label>Name</label>
                             <input
                             type='text'

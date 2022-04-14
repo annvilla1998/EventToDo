@@ -1,0 +1,37 @@
+.edit-event-form-modal {
+    width: 450px;
+    height: 60vh;
+    background-color:white;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.edit-event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-event-form-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.edit-event-form input {
+    border-radius: 2px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    padding: 6px;
+}
+
+.edit-event-form button {
+    border-radius: 2px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    background-color:#00A173;
+}

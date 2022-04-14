@@ -44,6 +44,10 @@
     margin-top:30px;
 }
 
+.loginFormContent p{
+    font-size: 13px;
+}
+
 .loginFormContent input {
     border: 1px solid black;
     border-radius: 5px;
@@ -77,6 +81,7 @@
     background-color:#00A173;
     border-radius: 5px;
     color: white;
+    margin-top:5px;
 }
 
 .signupLink {

@@ -31,6 +31,7 @@ export const removeEvent = (id) => async(dispatch) => {
     if(res.ok) {
         const event = await res.json()
         await dispatch(deleteEvent(event))
+        return event
     }
 }
 
@@ -54,8 +55,15 @@ export const createEvent = (event) => async (dispatch) => {
     if(res.ok) {
         const event = await res.json()
         await dispatch(addEvent(event))
-
-    }
+    }else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            // console.log(data.errors)
+          return data.errors;
+        }
+      } else {
+        return ['An error occurred. Please try again.']
+      }
 }
 
 export const editOneEvent = (event) => async (dispatch) => {
@@ -72,7 +80,14 @@ export const editOneEvent = (event) => async (dispatch) => {
         const event = await res.json()
         await dispatch(editEvent(event))
         return event
-    }
+    }else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ['An error occurred. Please try again.']
+      }
 }
 
 
@@ -85,9 +100,9 @@ export default function eventsReducer(state= initialState, action) {
 
     switch(action.type) {
         case GET_EVENTS:
-            action.payload.events.forEach(event => {
-               return newState.events[event.id] = event
-            })
+            action.payload.events.forEach(event => (
+               newState.events[event.id] = event
+            ))
             return newState
         case CREATE_EVENT:
             newState.events[action.payload.id] = action.payload
