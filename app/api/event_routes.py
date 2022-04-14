@@ -32,7 +32,7 @@ def post_event():
     return new_event.to_dict()
 
 
-@event_routes.route('/<id>', methods=["PUT"])
+@event_routes.route('/<id>', methods=["PUT","DELETE"])
 def edit_delete_event(id):
     if request.method == "PUT":
         event = Event.query.filter(Event.id == id).first()
@@ -43,3 +43,7 @@ def edit_delete_event(id):
         db.session.add(event)
         db.session.commit()
         return event.to_dict()
+    elif request.method == "DELETE":
+        event = Event.query.filter(Event.id == id).first()
+        db.session.delete(event)
+        db.session.commit()

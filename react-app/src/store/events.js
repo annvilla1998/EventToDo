@@ -1,6 +1,7 @@
 const GET_EVENTS = 'session/GET_EVENTS'
 const CREATE_EVENT = 'session/CREATE_EVENT';
-const EDIT_EVENT = 'session/EDIT_EVENT'
+const EDIT_EVENT = 'session/EDIT_EVENT';
+const DELETE_EVENT = 'session/DELETE_EVENT'
 
 export const addEvent = (event) => ({
     type: CREATE_EVENT,
@@ -16,6 +17,22 @@ export const editEvent = (event) => ({
     type: EDIT_EVENT,
     payload: event
 }) 
+
+export const deleteEvent = (id) => ({
+    type: DELETE_EVENT,
+    payload: id
+})
+
+export const removeEvent = (id) => async(dispatch) => {
+    const res = await fetch(`api/events/${id}`, {
+        method:"DELETE"
+    })
+
+    if(res.ok) {
+        const event = await res.json()
+        await dispatch(deleteEvent(event))
+    }
+}
 
 export const getAllEvents = () => async (dispatch) => {
     const res = await fetch(`/api/events/`)
@@ -37,6 +54,7 @@ export const createEvent = (event) => async (dispatch) => {
     if(res.ok) {
         const event = await res.json()
         await dispatch(addEvent(event))
+
     }
 }
 
@@ -76,6 +94,9 @@ export default function eventsReducer(state= initialState, action) {
             return newState
         case EDIT_EVENT:
             newState.events[action.payload.id] = action.payload
+            return newState
+        case DELETE_EVENT:
+            delete newState.events[action.payload.id]
             return newState
         default:
         return state

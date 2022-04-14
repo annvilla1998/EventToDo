@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Modal } from '../../context/modal';
 import { useDispatch, useSelector } from 'react-redux'
-import { editOneEvent } from '../../store/events'
+import { editOneEvent, removeEvent } from '../../store/events'
 
 
 export const EditEvent = ({event, setIsLoaded}) => {
@@ -13,7 +13,7 @@ export const EditEvent = ({event, setIsLoaded}) => {
 
 
 
-    const onSubmit = async(e) => {
+    const handleEditEvent = async(e) => {
         e.preventDefault()
 
         const editedEvent = {
@@ -23,6 +23,12 @@ export const EditEvent = ({event, setIsLoaded}) => {
         }
         await dispatch(editOneEvent(editedEvent)).then(() => setIsLoaded(true))
         setShowModal(false)
+    }
+
+
+    const handleDeleteEvent = async(e) => {
+        e.preventDefault()
+        await dispatch(removeEvent(event.id))
         
     }
 
@@ -42,7 +48,8 @@ export const EditEvent = ({event, setIsLoaded}) => {
                             onChange={e => setEditedEventName(e.target.value)}
                             />
                         </form>
-                        <button onClick={onSubmit} type="submit">Edit</button>
+                        <button onClick={handleEditEvent} type="submit">Edit</button>
+                        <button onClick={handleDeleteEvent} type="submit">Delete</button>
                         </div>
                     </div>
                 </Modal>

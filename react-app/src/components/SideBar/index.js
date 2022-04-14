@@ -64,7 +64,7 @@ export const SideBar = () => {
                             </ Modal>
                         )}
                     </div>
-                    {isLoaded &&
+                    {isLoaded && (
                         <div className="event-list-items">
                             {eventsArr.map(event => (
                                 <div key={event.id}>
@@ -72,7 +72,7 @@ export const SideBar = () => {
                                 </div>
                             ))}
                         </div>
-                    }
+                    )}
                 </div>
             </div>
             <div id="resizer"></div>
