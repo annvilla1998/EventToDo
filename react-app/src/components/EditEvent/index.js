@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { editOneEvent, removeEvent } from '../../store/events'
 import './editEvent.css'
 import { getAllEvents } from '../../store/events';
-import { Tasks } from '../Tasks';
 
 
 export const EditEvent = ({event}) => {
@@ -14,7 +13,6 @@ export const EditEvent = ({event}) => {
     const [editedEventName, setEditedEventName] = useState(event.name)
     const sessionUser = useSelector(state => state.session.user);
     const [errors, setErrors] = useState([]);
-    const tasks = useSelector(state => state.pageState?.events[event.id]?.tasks)
 
 
     
