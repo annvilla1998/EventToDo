@@ -24,6 +24,7 @@ export const EditEvent = ({event}) => {
             }
             await dispatch(editOneEvent(editedEvent)).then(()=> dispatch(getAllEvents()))
             setShowModal(false)
+            setErrors([])
         }else{
             errors.push("Give your event a name!")
         }
