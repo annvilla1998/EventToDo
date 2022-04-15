@@ -68,6 +68,7 @@ const SignUpForm = () => {
                       <input
                         type='text'
                         name='username'
+                        placeholder="Username"
                         onChange={updateUsername}
                         value={username}
                       ></input>
@@ -77,6 +78,7 @@ const SignUpForm = () => {
                       <input
                         type='text'
                         name='email'
+                        placeholder="Email"
                         onChange={updateEmail}
                         value={email}
                       ></input>
@@ -86,6 +88,7 @@ const SignUpForm = () => {
                         <input
                         type='text'
                         name="profileImage"
+                        placeholder="Profile Picture"
                         value={profileImage}
                         onChange={e => setProfileImage(e.target.value)}
                         />
@@ -95,6 +98,7 @@ const SignUpForm = () => {
                       <input
                         type='password'
                         name='password'
+                        placeholder="Password"
                         onChange={updatePassword}
                         value={password}
                       ></input>
@@ -104,6 +108,7 @@ const SignUpForm = () => {
                       <input
                         type='password'
                         name='repeat_password'
+                        placeholder="Confirm Password"
                         onChange={updateRepeatPassword}
                         value={repeatPassword}
                         required={true}

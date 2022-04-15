@@ -66,12 +66,12 @@ def edit_delete_event(id):
 
 
 @event_routes.route('/<id>/tasks', methods=["POST"])
-def add_task(id):
+def add_task():
     data=request.get_json(force=True)
     new_task = Task(
         name= data["name"],
         description= data["description"],
-        completed= data["completed"],
+        completed= "false",
         due_date= data["due_date"],
         event_id= data["event_id"],
         user_id= data["user_id"],
