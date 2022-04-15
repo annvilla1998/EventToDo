@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Modal } from '../../context/modal';
 import { useSelector, useDispatch } from 'react-redux'
-import { editOneEvent, removeEvent,deleteEvent } from '../../store/events'
+import { editOneEvent, removeEvent } from '../../store/events'
 import './editEvent.css'
 import { getAllEvents } from '../../store/events';
 
@@ -36,7 +36,6 @@ export const EditEvent = ({event}) => {
     const handleDeleteEvent = async(e) => {
         e.preventDefault()
         await dispatch(removeEvent(event.id)).then(()=> dispatch(getAllEvents()))
-        // await dispatch(removeEvent(event.id)).then(()=> dispatch(deleteEvent(event.id)))
         setShowModal(false)        
     }
 
