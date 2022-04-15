@@ -10,8 +10,10 @@ export const Today = () => {
             <h2>Today</h2>
             {taskArr.map(task => (
                 <div key={task.id}>
+                    <input className="task checkbox" type="checkbox" />
                     <div>{task.name}</div>
                     <div>{task.description}</div>
+                    <div>{task.due_date}</div>
                 </div>
             ))}
         </div>
