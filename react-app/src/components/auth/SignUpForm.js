@@ -104,7 +104,7 @@ const SignUpForm = () => {
                       ></input>
                     </div>
                     <div className="login-inputs">
-                      <label>Repeat Password</label>
+                      <label>Confirm Password</label>
                       <input
                         type='password'
                         name='repeat_password'

@@ -8,7 +8,7 @@ def seed_events():
     for _ in range(40):
         event = Event(
             name = (faker.name() + ' Concert'),
-            user_id = faker.random_int(min=1, max=3)
+            user_id = 1
         )
 
         db.session.add(event)

@@ -12,7 +12,7 @@ def seed_tasks():
             completed = False, 
             due_date = faker.date(),
             event_id = faker.random_int(min=1, max=40),
-            user_id = faker.random_int(min=1, max=3)
+            user_id = 1
         )
 
         db.session.add(task)
