@@ -57,7 +57,10 @@ export const TaskList = ({events}) => {
                             <Tasks task={task} />
                         </div>
                     ))}
-                <i onClick={openForm} id="addTask" className="fa-solid fa-plus"><p>Add Task</p></i>
+                <div onClick={openForm} id="addTask">
+                    <i className="fa-solid fa-plus"></i>
+                    <p>Add Task</p>
+                </div>
                 <div className="new-task-form">
                     <form style={{display:'none'}}>
                         <input
@@ -67,7 +70,7 @@ export const TaskList = ({events}) => {
                         value={taskName}
                         onChange={e => setTaskName(e.target.value)}
                         />
-                        <input
+                        <textarea
                         type="text"
                         placeholder="Description"
                         value={description}
