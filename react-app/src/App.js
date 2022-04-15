@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
-// import ProtectedRoute from './components/auth/ProtectedRoute';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 // import UsersList from './components/User/UsersList';
 // import User from './components/User/User';
 import { Today } from './components/Today'
@@ -40,12 +40,12 @@ function App() {
       </>
     )}
       <Switch>
-        <Route path='/today' exact={true} >
+        <ProtectedRoute path='/today' exact={true} >
             <Today/>
-        </Route>
-        <Route path='/events/:id' exact={true} >
+        </ProtectedRoute>
+        <ProtectedRoute path='/events/:id' exact={true} >
           <TaskList events={sessionUser?.events}/>
-        </Route>
+        </ProtectedRoute>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
