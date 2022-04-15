@@ -4,6 +4,7 @@ import { Modal } from '../../context/modal';
 import { useSelector, useDispatch } from 'react-redux'
 import { editOneEvent, removeEvent } from '../../store/events'
 import './editEvent.css'
+import { getAllEvents } from '../../store/events';
 
 
 export const EditEvent = ({event}) => {
@@ -13,27 +14,25 @@ export const EditEvent = ({event}) => {
     const sessionUser = useSelector(state => state.session.user);
     const [errors, setErrors] = useState([]);
 
-
     const handleEditEvent = async(e) => {
         e.preventDefault()
-
-        const editedEvent = {
-            id: event.id,
-            name: editedEventName,
-            user_id: sessionUser.id
-        }
-        const data = await dispatch(editOneEvent(editedEvent))
-        console.log(data)
-        if (data) {
-            setErrors(data)
-        }else {
+        if(editedEventName !== ""){
+            const editedEvent = {
+                id: event.id,
+                name: editedEventName,
+                user_id: sessionUser.id
+            }
+            await dispatch(editOneEvent(editedEvent)).then(()=> dispatch(getAllEvents()))
             setShowModal(false)
+        }else{
+            errors.push("Give your event a name!")
         }
     }
+        
 
     const handleDeleteEvent = async(e) => {
         e.preventDefault()
-        await dispatch(removeEvent(event.id))
+        await dispatch(removeEvent(event.id)).then(()=> dispatch(getAllEvents()))
         setShowModal(false)        
     }
 

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './login.css'
+import logo from '../../assets/logo.png'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -50,7 +51,7 @@ const SignUpForm = () => {
     <div className='loginFormContainer'>
         <div className="loginForm">
             <div className="loginLogo">
-              eventtodo<img alt="logo" src="logo.png"/>
+              eventtodo<img alt="logo" src={logo}/>
             </div>
             <div className="loginFormContent">
                 <h1>Sign up</h1>
