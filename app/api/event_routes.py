@@ -63,3 +63,8 @@ def edit_delete_event(id):
         db.session.delete(event)
         db.session.commit()
         return event.to_dict()
+
+
+# @event_routes.route('/<id>/tasks', methods=["POST"])
+# def add_task(id):
+#     data=request.get_json(force=True)

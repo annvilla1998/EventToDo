@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { editOneEvent, removeEvent } from '../../store/events'
 import './editEvent.css'
 import { getAllEvents } from '../../store/events';
+import { Tasks } from '../Tasks';
 
 
 export const EditEvent = ({event}) => {
@@ -13,7 +14,10 @@ export const EditEvent = ({event}) => {
     const [editedEventName, setEditedEventName] = useState(event.name)
     const sessionUser = useSelector(state => state.session.user);
     const [errors, setErrors] = useState([]);
+    const tasks = useSelector(state => state.pageState?.events[event.id]?.tasks)
 
+
+    
     const handleEditEvent = async(e) => {
         e.preventDefault()
         if(editedEventName !== ""){
@@ -40,9 +44,13 @@ export const EditEvent = ({event}) => {
     return (
         <>
         <div className="event-link">
-            <Link key={event.id} to={`/events/${event.id}`}>{event.name}</Link>
+            <Link to={{
+                pathname: `/events/${event.id}`,
+                state: { event: event}
+            }}>{event.name}</Link>
             <i onClick={() => setShowModal(true)} className="fa-solid fa-ellipsis"></i>
         </div>
+            
             {showModal && (
                 <Modal onClose={()=> setShowModal(false)}>
                     <div className="edit-event-form-modal">
