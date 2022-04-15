@@ -12,10 +12,20 @@ export const TaskList = ({events}) => {
     const [description, setDescription] = useState('')
     const { id } = useParams()
     const tasks = events[id]?.tasks
+    const sessionUser = useSelector(state => state.session.user);
 
 
     const addTask = async(e) => {
         e.preventDefault()
+        
+        newTask = {
+            name: taskName,
+            description: description,
+            due_date: dueDate,
+            event_id: id,
+            user_id: sessionUser.id
+        }
+
         
     }
 
