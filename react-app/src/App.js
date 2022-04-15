@@ -9,6 +9,7 @@ import UsersList from './components/User/UsersList';
 import User from './components/User/User';
 import { authenticate } from './store/session';
 import {SideBar} from './components/SideBar'
+import { Tasks } from './components/Tasks/index'
 // import { Events } from './components/Events/index'
 
 function App() {
@@ -49,8 +50,8 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          
+        <ProtectedRoute path='/events/:id' exact={true} >
+          <Tasks />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
