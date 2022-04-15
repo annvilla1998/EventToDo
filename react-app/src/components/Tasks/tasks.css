@@ -8,7 +8,28 @@
     align-items: center;
 }
 
-.task {
+.task-container {
     display: flex;
     margin: 10px;
+    align-items: center;
+    gap:20px;
+}
+
+.task-name-description {
+    display:flex;
+    flex-direction: column;
+    list-style:none;
+    
+}
+
+.task {
+    padding: 5px;
+}
+
+.name {
+    font-weight: 500;
+}
+
+.description {
+    font-weight: 300;
 }

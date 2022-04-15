@@ -3,12 +3,12 @@ import './today.css'
 
 export const Today = () => {
     const userTasks = useSelector(state =>state.session.user.tasks)
-    const taskArr = Object.values(userTasks)
+    // const taskArr = Object.values(userTasks)
 
     return (
         <div className="today-container">
             <h2>Today</h2>
-            {taskArr.map(task => (
+            {userTasks.map(task => (
                 <div key={task.id}>
                     <input className="task checkbox" type="checkbox" />
                     <div>{task.name}</div>
