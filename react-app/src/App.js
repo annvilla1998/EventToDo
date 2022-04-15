@@ -40,18 +40,20 @@ function App() {
       </>
     )}
       <Switch>
-        <ProtectedRoute path='/today' exact={true} >
-            <Today/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/events/:id' exact={true} >
-          <TaskList events={sessionUser?.events}/>
-        </ProtectedRoute>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/today' exact={true} >
+            <Today/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/events/:id' exact={true} >
+          <TaskList events={sessionUser?.events}/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/' exact={true} >
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
