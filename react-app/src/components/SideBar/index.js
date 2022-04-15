@@ -85,7 +85,7 @@ export const SideBar = () => {
             </div>
             <div id="resizer"></div>
             <div className="main content">
-                
+
             </div>
         </div>
     )
