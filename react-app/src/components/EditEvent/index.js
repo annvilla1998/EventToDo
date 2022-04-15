@@ -23,7 +23,7 @@ export const EditEvent = ({event}) => {
             user_id: sessionUser.id
         }
         const data = await dispatch(editOneEvent(editedEvent))
-        console.log(data)
+        // console.log(data)
         if (data) {
             setErrors(data)
         }else {
@@ -49,11 +49,11 @@ export const EditEvent = ({event}) => {
                         <h2>Edit event</h2>
                         <div className="edit-event-form">
                         <form>
-                            <div id="errors">
+                            {/* <div id="errors">
                                 {errors.map((error, ind) => (
                                     <div key={ind}>{error}</div>
                                 ))}
-                            </div>
+                            </div> */}
                             <label>Name</label>
                             <input
                             type='text'
