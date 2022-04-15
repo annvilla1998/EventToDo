@@ -40,51 +40,64 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='loginFormContainer'>
-      <div className="loginForm">
-          <div className="loginLogo">
-            eventtodo<img alt="logo" src={logo}/>
-          </div>
-          <div className="loginFormContent">
-              <h1>Log in</h1>
-              <form onSubmit={onLogin}>
-                <div id="errors">
-                  {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                  ))}
-                </div>
-                <div className="login-inputs">
-                  <label htmlFor='email'>Email</label>
-                  <input
-                    name='email'
-                    type='text'
-                    placeholder='Email'
-                    value={email}
-                    onChange={updateEmail}
-                  />
-                </div>
-                <div className="login-inputs">
-                  <label htmlFor='password'>Password</label>
-                  <input
-                    name='password'
-                    type='password'
-                    placeholder='Password'
-                    value={password}
-                    onChange={updatePassword}
-                  />
-                </div>
-                <button type='submit'>Login</button>
-                <p>Want to try it out before signing up?</p>
-                <button type="button" onClick={demoLogin}>Log In As Demo User</button>
-              </form>
-          </div>
-          <div className="signupLink">
-            <p>Don't have an account? 
-              <Link to="/sign-up">Sign up</Link>
-              </p>
+    <div id="login-page">
+      <div className='loginFormContainer'>
+        <div className="loginForm">
+            <div className="loginLogo">
+              eventtodo<img alt="logo" src={logo}/>
+            </div>
+            <div className="loginFormContent">
+                <h1>Log in</h1>
+                <form onSubmit={onLogin}>
+                  <div id="errors">
+                    {errors.map((error, ind) => (
+                      <div key={ind}>{error}</div>
+                    ))}
+                  </div>
+                  <div className="login-inputs">
+                    <label htmlFor='email'>Email</label>
+                    <input
+                      name='email'
+                      type='text'
+                      placeholder='Email'
+                      value={email}
+                      onChange={updateEmail}
+                    />
+                  </div>
+                  <div className="login-inputs">
+                    <label htmlFor='password'>Password</label>
+                    <input
+                      name='password'
+                      type='password'
+                      placeholder='Password'
+                      value={password}
+                      onChange={updatePassword}
+                    />
+                  </div>
+                  <button type='submit'>Login</button>
+                  <p>Want to try it out before signing up?</p>
+                  <button type="button" onClick={demoLogin}>Log In As Demo User</button>
+                </form>
+            </div>
+            <div className="signupLink">
+              <p>Don't have an account? 
+                <Link to="/sign-up">Sign up</Link>
+                </p>
+            </div>
           </div>
         </div>
-      </div>
+        <footer>
+            <div id="tech" >Reactjs</div>
+            <div id="tech" >Redux</div>
+            <div id="tech" >Javascript</div>
+            <div id="tech" >Python</div>
+            <div id="tech" >Flask</div>
+            <div id="tech" >SQLAlchemy</div>
+            <div id="tech" >PostgreSQL</div>
+            <div id="tech" >HTML</div>
+            <div id="tech" >CSS</div>
+        </footer>
+    </div>
   );
 };
 
