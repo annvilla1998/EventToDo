@@ -48,76 +48,89 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className='loginFormContainer'>
-        <div className="loginForm">
-            <div className="loginLogo">
-              eventtodo<img alt="logo" src={logo}/>
+    <div id="login-page">
+        <div className='loginFormContainer'>
+            <div className="loginForm">
+                <div className="loginLogo">
+                  eventtodo<img alt="logo" src={logo}/>
+                </div>
+                <div className="loginFormContent">
+                    <h1>Sign up</h1>
+                    <div>Plan around priorities to be able to experience the music you love!!</div>
+                  <form onSubmit={onSignUp}>
+                    <div id="errors">
+                      {errors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                      ))}
+                    </div>
+                    <div className="login-inputs">
+                      <label>User Name</label>
+                      <input
+                        type='text'
+                        name='username'
+                        onChange={updateUsername}
+                        value={username}
+                      ></input>
+                    </div>
+                    <div className="login-inputs">
+                      <label>Email</label>
+                      <input
+                        type='text'
+                        name='email'
+                        onChange={updateEmail}
+                        value={email}
+                      ></input>
+                    </div>
+                    <div className="login-inputs">
+                        <label>Profile Picture (Optional)</label>
+                        <input
+                        type='text'
+                        name="profileImage"
+                        value={profileImage}
+                        onChange={e => setProfileImage(e.target.value)}
+                        />
+                    </div>
+                    <div className="login-inputs">
+                      <label>Password</label>
+                      <input
+                        type='password'
+                        name='password'
+                        onChange={updatePassword}
+                        value={password}
+                      ></input>
+                    </div>
+                    <div className="login-inputs">
+                      <label>Repeat Password</label>
+                      <input
+                        type='password'
+                        name='repeat_password'
+                        onChange={updateRepeatPassword}
+                        value={repeatPassword}
+                        required={true}
+                      ></input>
+                    </div>
+                    <button type='submit'>Sign Up</button>
+                  </form>
+                </div>
+                <div className="signupLink">
+                <p>Already signed up?
+                  <Link to="/login">Log in</Link>
+                  </p>
+              </div>
             </div>
-            <div className="loginFormContent">
-                <h1>Sign up</h1>
-                <div>Plan around priorities to be able to experience the music you love!!</div>
-              <form onSubmit={onSignUp}>
-                <div id="errors">
-                  {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                  ))}
-                </div>
-                <div className="login-inputs">
-                  <label>User Name</label>
-                  <input
-                    type='text'
-                    name='username'
-                    onChange={updateUsername}
-                    value={username}
-                  ></input>
-                </div>
-                <div className="login-inputs">
-                  <label>Email</label>
-                  <input
-                    type='text'
-                    name='email'
-                    onChange={updateEmail}
-                    value={email}
-                  ></input>
-                </div>
-                <div className="login-inputs">
-                    <label>Profile Picture (Optional)</label>
-                    <input
-                    type='text'
-                    name="profileImage"
-                    value={profileImage}
-                    onChange={e => setProfileImage(e.target.value)}
-                    />
-                </div>
-                <div className="login-inputs">
-                  <label>Password</label>
-                  <input
-                    type='password'
-                    name='password'
-                    onChange={updatePassword}
-                    value={password}
-                  ></input>
-                </div>
-                <div className="login-inputs">
-                  <label>Repeat Password</label>
-                  <input
-                    type='password'
-                    name='repeat_password'
-                    onChange={updateRepeatPassword}
-                    value={repeatPassword}
-                    required={true}
-                  ></input>
-                </div>
-                <button type='submit'>Sign Up</button>
-              </form>
-            </div>
-            <div className="signupLink">
-            <p>Already signed up?
-              <Link to="/login">Log in</Link>
-              </p>
           </div>
-        </div>
-      </div>
+          <footer>
+          <div id="tech" >Reactjs</div>
+          <div id="tech" >Redux</div>
+          <div id="tech" >Javascript</div>
+          <div id="tech" >Python</div>
+          <div id="tech" >Flask</div>
+          <div id="tech" >SQLAlchemy</div>
+          <div id="tech" >PostgreSQL</div>
+          <div id="tech" >HTML</div>
+          <div id="tech" >CSS</div>
+        </footer>
+    </div>
   );
 };
 
