@@ -4,6 +4,7 @@ import '../Tasks/tasks.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react'
+import { useSelector } from 'react-'
 
 
 export const TaskList = ({events}) => {
@@ -15,19 +16,19 @@ export const TaskList = ({events}) => {
     const sessionUser = useSelector(state => state.session.user);
 
 
-    const addTask = async(e) => {
-        e.preventDefault()
+    // const addTask = async(e) => {
+    //     e.preventDefault()
         
-        newTask = {
-            name: taskName,
-            description: description,
-            due_date: dueDate,
-            event_id: id,
-            user_id: sessionUser.id
-        }
+    //     newTask = {
+    //         name: taskName,
+    //         description: description,
+    //         due_date: dueDate,
+    //         event_id: id,
+    //         user_id: sessionUser.id
+    //     }
 
-        
-    }
+
+    // }
 
     //     const addTaskIcon = document.getElementById("addTask")
     //     const taskForm = document.querySelector(".new-task-form form")
