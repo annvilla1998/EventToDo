@@ -19,10 +19,12 @@ export const Tasks = ({task}) => {
 
     return (
         <div className="task-list">
-                <div className="task" key={task.id}>
-                    <input className="task checkbox" type="checkbox" />
-                    <li >{task?.name}</li>
-                    <li >{task?.description}</li>
+                <div className="task-container" key={task.id}>
+                    <input className="task-checkbox" type="checkbox" />
+                    <div className="task-name-description">
+                        <li className="task name">{task?.name}</li>
+                        <li className="task description">{task?.description}</li>
+                    </div>
                 </div>
                 <i className="fa-solid fa-plus"></i>
                 <div className="new-task-form">

@@ -7,13 +7,12 @@ export const TaskList = ({events}) => {
     // const event = location.state?.event?.tasks
     // const tasksArr = Object?.values(event)
     const { id } = useParams()
-    const event = events[id]
-    const tasksArr = Object.values(event?.tasks)
-
+    const tasks = events[id]?.tasks
+    // const tasksArr = Object.values(event?.tasks)
     return (
         <div className="tasks-container">
             <h2>Tasks</h2>
-                {tasksArr.map(task => (
+                {tasks.map(task => (
                     <div key={task?.id}>
                         <Tasks task={task} />
                     </div>

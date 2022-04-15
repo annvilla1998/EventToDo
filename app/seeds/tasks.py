@@ -8,7 +8,7 @@ def seed_tasks():
     for _ in range(40):
         task = Task(
             name = "Book Flight",
-            description = "check packages on travelocity",
+            description = "check deals on travelocity",
             completed = False, 
             due_date = faker.date(),
             event_id = faker.random_int(min=1, max=40),
