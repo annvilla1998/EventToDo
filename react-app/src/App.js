@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/User/UsersList';
-import User from './components/User/User';
+// import ProtectedRoute from './components/auth/ProtectedRoute';
+// import UsersList from './components/User/UsersList';
+// import User from './components/User/User';
+import { Today } from './components/Today'
 import { authenticate } from './store/session';
 import {SideBar} from './components/SideBar'
-import { Tasks } from './components/Tasks/index'
+import { TaskList } from './components/TaskList/index'
 // import { Events } from './components/Events/index'
 
 function App() {
@@ -34,25 +35,23 @@ function App() {
     {sessionUser && (
       <>
         <NavBar user={sessionUser} />
-        <SideBar user={sessionUser} />
+        <SideBar user={sessionUser}>
+        </SideBar>
       </>
     )}
       <Switch>
+        <Route path='/today' exact={true} >
+            <Today/>
+        </Route>
+        <Route path='/events/:id' exact={true} >
+          <TaskList events={sessionUser?.events}/>
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/events/:id' exact={true} >
-          <Tasks />
-        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

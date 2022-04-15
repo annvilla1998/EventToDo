@@ -7,7 +7,7 @@ class Task(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(255), nullable=True)
     completed = db.Column(db.Boolean, default=False)
     due_date = db.Column(db.Date, nullable=True)
     event_id = db.Column(db.Integer, db.ForeignKey("events.id"), nullable=False)
@@ -28,6 +28,6 @@ class Task(db.Model):
             'event_id': self.event_id,
             'user_id': self.user_id,
             'updated_at': self.updated_at,
-            'users': {user.id: user.to_dict() for user in self.users}, 
-            'events': {event.id: event.to_dict() for event in self.events},
+            # 'users': self.users.to_dict(), 
+            # 'events': self.event.to_dict()
         }

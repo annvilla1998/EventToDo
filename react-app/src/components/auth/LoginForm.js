@@ -11,6 +11,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const events = useSelector(state => state.pageState.events)
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -36,7 +37,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/today' />;
   }
 
   return (

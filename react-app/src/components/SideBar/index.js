@@ -6,8 +6,8 @@ import { createEvent } from '../../store/events';
 import { getAllEvents } from '../../store/events';
 import { useEffect } from 'react'
 import { EditEvent} from '../EditEvent/index'
-import { useHistory } from 'react-router-dom';
-// import { Tasks } from '../Tasks/index';
+import { useHistory, Link } from 'react-router-dom';
+
 
 
 export const SideBar = () => {
@@ -20,7 +20,9 @@ export const SideBar = () => {
     const [eventName, setEventName] = useState('')
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
-  
+
+    
+
     useEffect(() => {
         (async () => (
           await dispatch(getAllEvents())
@@ -48,6 +50,9 @@ export const SideBar = () => {
     return (
         <div className="sidebar-container">
             <div className="sidebar-content">
+                <div className="today-link">
+                    <Link to="/today"><h2>Today</h2></Link>
+                </div>
                 <div className="events-list">
                     <div className="add-event-h2">
                         <h2>Events</h2>
@@ -88,7 +93,7 @@ export const SideBar = () => {
                 </div>
             </div>
             <div id="resizer"></div>
-            <div className="main content">
+            <div className="main-content">
             </div>
         </div>
     )

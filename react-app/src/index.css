@@ -4,3 +4,12 @@
     color: red;
 
 }
+
+
+#root {
+    display: flex;
+    flex-direction: row;
+
+    /* top: 68px; */
+    padding-top: 68px;
+}

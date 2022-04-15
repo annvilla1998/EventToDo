@@ -1,7 +1,8 @@
 .sidebar-container {
     /* padding: 30px 0px 0px 35px; */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    
     /* align-items: stretch; */
 }
 
@@ -92,3 +93,14 @@
 .add-event-h2 i:hover {
     opacity: 0.5;
 }
+
+.today-link a {
+    text-decoration: none;
+    color: black;
+}
+
+.today-link h2 {
+    margin: 20px;
+
+}
+

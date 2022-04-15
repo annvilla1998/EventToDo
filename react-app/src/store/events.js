@@ -86,6 +86,31 @@ export const editOneEvent = (event) => async (dispatch) => {
 }
 
 
+// ---- tasks -----
+const ADD_TASK = 'session/ADD_TASK'
+
+export const addTask = (task) => ({
+    type: ADD_TASK,
+    payload: task
+}) 
+
+
+export const createTask = (eventId, task) => async(dispatch) => {
+    const response = await fetch(`api/events/${eventId}/tasks`,{
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task)
+    })
+
+    if(response.ok) {
+        const task = response.json()
+        await dispatch(addTask(task))
+        return task
+    }
+}
 
 
 const initialState = { events: {}}
@@ -96,19 +121,18 @@ export default function eventsReducer(state= initialState, action) {
     switch(action.type) {
         case GET_EVENTS:
             newState.events = action.payload
-            // action.payload.events.forEach(event => (
-            //    newState.events[event.id] = event
-            // ))
             return newState
         case CREATE_EVENT:
             newState.events[action.payload.id] = action.payload
             return newState
         case EDIT_EVENT:
-            
             newState.events[action.payload.id] = action.payload
             return newState
         case DELETE_EVENT:
             delete newState.events[action.payload.id]
+            return newState
+        case ADD_TASK:
+            newState.events.tasks[action.payload.id] = action.payload
             return newState
         default:
         return state
