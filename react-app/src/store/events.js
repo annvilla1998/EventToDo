@@ -24,7 +24,7 @@ export const deleteEvent = (id) => ({
 })
 
 export const removeEvent = (id) => async(dispatch) => {
-    const res = await fetch(`api/events/${id}`, {
+    const res = await fetch(`/api/events/${id}`, {
         method:"DELETE"
     })
 

@@ -60,6 +60,7 @@ def edit_delete_event(id):
     
     elif request.method == "DELETE":
         event = Event.query.filter(Event.id == id).first()
+        print(event)
         db.session.delete(event)
         db.session.commit()
         return event.to_dict()

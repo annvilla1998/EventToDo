@@ -10,16 +10,16 @@ export const Tasks = ({task}) => {
     const [description, setDescription] = useState('')
     
     // style={{display:'none'}}
-    // const addTask = async(e) => {
-    //     e.preventDefault()
+    const addTask = async(e) => {
+        e.preventDefault()
 
 
-    // }
+    }
 
 
     return (
         <div className="task-list">
-                <div key={task.id}>
+                <div className="task" key={task.id}>
                     <input className="task checkbox" type="checkbox" />
                     <li >{task?.name}</li>
                     <li >{task?.description}</li>
@@ -44,7 +44,7 @@ export const Tasks = ({task}) => {
                         selected={dueDate} 
                         onChange={(date) => setDueDate(date)} 
                         />
-                        {/* <button onClick={addTask}>Add Task</button> */}
+                        <button onClick={addTask}>Add Task</button>
                     </form>
                 </div>
 
