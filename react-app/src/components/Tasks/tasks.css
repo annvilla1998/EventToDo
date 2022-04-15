@@ -46,3 +46,14 @@
 .description {
     font-weight: 300;
 }
+
+.new-task-form {
+    display:flex;
+    justify-content:center;
+}
+
+#addTask p {
+    padding-left: 15px;
+    opacity: 0.5;
+}
+

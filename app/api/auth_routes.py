@@ -64,17 +64,27 @@ def sign_up():
     if form.validate_on_submit():
         if form.data["profile_image"] == "":
             profile_image = "https://st3.depositphotos.com/3854637/31995/v/1600/depositphotos_319955714-stock-illustration-asian-man-listen-music-headphones.jpg"
-        user = User(
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password'],
-            profile_image=profile_image
-        )
-        print(user)
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        return user.to_dict()
+            user = User(
+                username=form.data['username'],
+                email=form.data['email'],
+                password=form.data['password'],
+                profile_image=profile_image
+            )
+            db.session.add(user)
+            db.session.commit()
+            login_user(user)
+            return user.to_dict()
+        else:
+            user = User(
+                username=form.data['username'],
+                email=form.data['email'],
+                password=form.data['password'],
+                profile_image=form.data["profile_image"]
+            )
+            db.session.add(user)
+            db.session.commit()
+            login_user(user)
+            return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
