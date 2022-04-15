@@ -4,7 +4,7 @@ import '../Tasks/tasks.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react'
-import { useSelector } from 'react-'
+// import { useSelector } from 'react-'
 
 
 export const TaskList = ({events}) => {
@@ -13,10 +13,10 @@ export const TaskList = ({events}) => {
     const [description, setDescription] = useState('')
     const { id } = useParams()
     const tasks = events[id]?.tasks
-    const sessionUser = useSelector(state => state.session.user);
+    // const sessionUser = useSelector(state => state.session.user);
 
 
-    // const addTask = async(e) => {
+    const addTask = async(e) => {
     //     e.preventDefault()
         
     //     newTask = {
@@ -25,7 +25,7 @@ export const TaskList = ({events}) => {
     //         due_date: dueDate,
     //         event_id: id,
     //         user_id: sessionUser.id
-    //     }
+        }
 
 
     // }
