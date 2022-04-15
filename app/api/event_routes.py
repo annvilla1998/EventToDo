@@ -60,12 +60,22 @@ def edit_delete_event(id):
     
     elif request.method == "DELETE":
         event = Event.query.filter(Event.id == id).first()
-        print(event)
         db.session.delete(event)
         db.session.commit()
         return event.to_dict()
 
 
-# @event_routes.route('/<id>/tasks', methods=["POST"])
-# def add_task(id):
-#     data=request.get_json(force=True)
+@event_routes.route('/<id>/tasks', methods=["POST"])
+def add_task(id):
+    data=request.get_json(force=True)
+    new_task = Task(
+        name= data["name"],
+        description= data["description"],
+        completed= data["completed"],
+        due_date= data["due_date"],
+        event_id= data["event_id"],
+        user_id= data["user_id"],
+    )
+    db.session.add(new_task)
+    db.session.commit()
+    return new_task.to_dict()

@@ -46,3 +46,47 @@
 .description {
     font-weight: 300;
 }
+
+
+#addTask{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+#addTask p {
+    opacity: 0.5;
+}
+
+.new-task-form {
+    display: flex;
+    width: 150px;
+    justify-content:center;
+    align-items: center;
+}
+
+
+.new-task-form input {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin:5px;
+    padding:3px;
+}
+
+.new-task-form textarea {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin:5px;
+    padding:3px;
+}
+
+.new-task-form button {
+    border-radius: 5px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    background-color:#00A173;
+    margin: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    padding:8px;
+}
