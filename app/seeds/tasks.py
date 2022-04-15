@@ -10,8 +10,8 @@ def seed_tasks():
             name = "Book Flight",
             description = "check packages on travelocity",
             completed = False, 
-            due_date = faker.date()
-            event_id = faker.random_int(min=1, max=40)
+            due_date = faker.date(),
+            event_id = faker.random_int(min=1, max=40),
             user_id = faker.random_int(min=1, max=3)
         )
 
