@@ -95,8 +95,8 @@ export const addTask = (task) => ({
 }) 
 
 
-export const createTask = (eventId, task) => async(dispatch) => {
-    const response = await fetch(`api/events/${eventId}/tasks`,{
+export const createTask = (task) => async(dispatch) => {
+    const response = await fetch(`/api/events/tasks`,{
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -104,9 +104,10 @@ export const createTask = (eventId, task) => async(dispatch) => {
         },
         body: JSON.stringify(task)
     })
-
+// console.log(task)
     if(response.ok) {
-        const task = response.json()
+        const task = await response.json()
+        console.log(task)
         await dispatch(addTask(task))
         return task
     }
@@ -132,7 +133,7 @@ export default function eventsReducer(state= initialState, action) {
             delete newState.events[action.payload.id]
             return newState
         case ADD_TASK:
-            newState.events.tasks[action.payload.id] = action.payload
+            newState.events[action.payload.event_id].tasks[action.payload.id] = action.payload
             return newState
         default:
         return state
