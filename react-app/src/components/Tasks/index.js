@@ -27,7 +27,7 @@ export const Tasks = ({task}) => {
                 user_id: sessionUser.id,
                 event_id: task.event_id
             }
-            await dispatch(editOneTask(editedTask))
+           dispatch(editOneTask(editedTask))
             setShowModal(false)
             setErrors([])
         }else{
@@ -37,7 +37,7 @@ export const Tasks = ({task}) => {
 
     const handleDeleteTask = async(e) => {
         e.preventDefault()
-        await dispatch(removeTask(task.id))
+        dispatch(removeTask(task.id))
         setDeleteConfirmationModal(false)
     }
 

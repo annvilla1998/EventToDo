@@ -21,6 +21,6 @@ class Event(db.Model):
             'name': self.name,
             'user_id': self.user_id,
             'updated_at': self.updated_at,
-            'tasks': [task.to_dict() for task in self.tasks]
+            'tasks': {task.id: task.to_dict() for task in self.tasks}
             # 'users': self.users.to_dict(), 
         }

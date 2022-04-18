@@ -65,6 +65,15 @@ def edit_delete_event(id):
         return event.to_dict()
 
 
+@event_routes.route('/<id>/tasks')
+def get_tasks(id):
+    tasks = Task.query.filter(Task.event_id == id).all()
+    tasks_dictionary = {}
+    for task in tasks:
+        task.to_dict()
+        tasks_dictionary[task.id] = task.to_dict()
+    return tasks_dictionary
+
 @event_routes.route('/tasks', methods=["POST"])
 def add_task():
     data=request.get_json(force=True)

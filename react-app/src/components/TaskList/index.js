@@ -3,9 +3,10 @@ import { Tasks } from '../Tasks/index'
 import '../Tasks/tasks.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createTask } from '../../store/events'
+import { createTask, getAllTasks } from '../../store/events'
+
 
 
 export const TaskList = ({events}) => {
@@ -13,10 +14,17 @@ export const TaskList = ({events}) => {
     const [taskName, setTaskName] = useState("")
     const [description, setDescription] = useState('')
     const { id } = useParams()
-    const tasks = events[id]?.tasks
+    const parsedId = parseInt(id)
+    // const tasks = Object.values(events[id]?.tasks)
+    const tasksObj = useSelector(state => state.pageState.tasks)
+    const tasks = Object.values(tasksObj)
     const sessionUser = useSelector(state => state.session.user);
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllTasks(parsedId));
+    },[dispatch, parsedId])
 
     const addTask = async(e) => {
         e.preventDefault()
@@ -28,9 +36,8 @@ export const TaskList = ({events}) => {
             event_id: parseInt(id),
             user_id: sessionUser.id
         }
-        // console.log(newTask)
         if(newTask.name !== ""){
-            await dispatch(createTask(newTask))
+            dispatch(createTask(newTask))
             setErrors([])
             const taskForm = document.querySelector(".new-task-form form")
             taskForm.style.display = "none"
@@ -39,21 +46,6 @@ export const TaskList = ({events}) => {
         }
 
     }
-
-    //     const addTaskIcon = document.getElementById("addTask")
-    //     const taskForm = document.querySelector(".new-task-form form")
-    //     addTaskIcon.addEventListener("click", (e) => {
-        //         e.preventDefault()
-    //         taskForm.style.display = "block"
-    //     })
-    //     // console.log(addTaskIcon)
-    //     //task form hide
-    
-    //     const cancelTaskFormButton = document.querySelector(".cancel-task") 
-    //     cancelTaskFormButton.addEventListener("click", (e) => {
-        //         e.preventDefault()
-        //         taskForm.style.display = "none"
-        //     })
         
         
     // task form expand
@@ -81,7 +73,7 @@ export const TaskList = ({events}) => {
         <>
             <div className="tasks-container">
                 <h2>Tasks</h2>
-                    {tasks.map(task => (
+                    {tasks?.map(task => (
                         <div key={task?.id}>
                             <Tasks task={task} />
                         </div>
