@@ -5,24 +5,27 @@ import { editOneTask, removeTask } from '../../store/events'
 import { Modal } from '../../context/modal';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import DateObject from "react-date-object";
 
 
 export const Tasks = ({task}) => {
     const dispatch = useDispatch()
     const [errors, setErrors] = useState([]);
     const [editedTaskName, setEditedTaskName] = useState(task.name)
-    const [editedDescription, setEditedDescription] = useState(task.description)
+    const [editedTaskDescription, setEditedTaskDescription] = useState(task.description)
     const [editedDueDate, setEditedDueDate] = useState(new Date(task.due_date))
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
+    const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
+
     const handleEditTask = async(e) => {
         e.preventDefault()
         if(editedTaskName !== ""){
             const editedTask= {
                 id: task.id,
                 name: editedTaskName,
-                user_id: sessionUser.id
+                description: editedTaskDescription,
+                user_id: sessionUser.id,
+                event_id: task.event_id
             }
             await dispatch(editOneTask(editedTask))
             setShowModal(false)
@@ -35,13 +38,13 @@ export const Tasks = ({task}) => {
     const handleDeleteTask = async(e) => {
         e.preventDefault()
         await dispatch(removeTask(task.id))
+        setDeleteConfirmationModal(false)
     }
 
     const cancelForm = async(e) => {
         e.preventDefault()
         setShowModal(false)
     }
-
     return (
         <div className="task-list">
             <div className="task-container">
@@ -52,7 +55,7 @@ export const Tasks = ({task}) => {
                         <li className="task description">{task?.description}</li>
                         <li className="task due-date">{task?.due_date}</li>
                     </div>
-                        <button onClick={() => setShowModal(true)}>Edit</button>
+                        <i onClick={() => setShowModal(true)} className="fa-solid fa-pen-to-square"></i>
                         {showModal && (
                             <Modal onClose={() =>setShowModal(false)}>
                                 <div className="edit-task-form">
@@ -72,8 +75,8 @@ export const Tasks = ({task}) => {
                                         <textarea
                                         type="text"
                                         placeholder="Description"
-                                        value={editedDescription}
-                                        onChange={e=> setEditedDescription(e.target.value)}
+                                        value={editedTaskDescription}
+                                        onChange={e=> setEditedTaskDescription(e.target.value)}
                                         />
                                         <DatePicker 
                                         selected={editedDueDate} 
@@ -85,7 +88,20 @@ export const Tasks = ({task}) => {
                                 </div>
                             </Modal>
                         )}
-                    <button onCLick={handleDeleteTask}>Delete</button>
+                    <div onClick={() => setDeleteConfirmationModal(true)}>
+                        <i className="fa-solid fa-trash-can"></i>
+                    </div>
+                    {deleteConfirmationModal && (
+                        <Modal onClose={() =>setDeleteConfirmationModal(false)}>
+                            <div className="delete-confirmation-modal">
+                                Are you sure?
+                                <div className="delete-confirmation-buttons">
+                                    <button onClick={handleDeleteTask}>Delete</button>
+                                    <button onClick={() => setDeleteConfirmationModal(false)} >Cancel</button>
+                                </div>
+                            </div>
+                        </Modal>
+                    )}
                 </div>
                     
             </div>

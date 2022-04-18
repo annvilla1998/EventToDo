@@ -155,7 +155,25 @@
     padding:8px;
 }
 
-.new-task-form button {
+.delete-confirmation-modal {
+    width: 300px;
+    height: 20vh;
+    border-radius:20px;
+    background-color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    gap: 30px;
+}
+
+.delete-confirmation-buttons {
+    display:flex;
+    gap: 20px;
+    
+}
+
+.delete-confirmation-buttons button {
     border-radius: 5px;
     border: 1px solid rgb(0, 0, 0, 0.1);
     background-color:#00A173;
@@ -164,3 +182,4 @@
     font-size: 15px;
     padding:8px;
 }
+

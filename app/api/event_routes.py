@@ -83,9 +83,10 @@ def add_task():
 
 
 @event_routes.route('/tasks/<id>', methods=["PUT", "DELETE"])
-def edit_delete_task():
+def edit_delete_task(id):
     if request.method == "PUT":
         data = request.get_json(force=True)
+        print(data)
         task = Task.query.filter(Task.id == id).first()
         task.user_id = data["user_id"]
         task.name = data["name"]
