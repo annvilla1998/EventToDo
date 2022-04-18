@@ -175,6 +175,11 @@ export default function eventsReducer(state= initialState, action) {
         case ADD_TASK:
             newState.events[action.payload.event_id].tasks[action.payload.id] = action.payload
             return newState
+        case EDIT_TASK:
+            newState.events[action.payload.event_id].tasks[action.payload.id] = action.payload
+        case DELETE_TASK:
+            delete newState.events[action.payload.event_id].tasks[action.payload.id]
+            return newState
         default:
         return state
     }

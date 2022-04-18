@@ -16,6 +16,8 @@ export const EditEvent = ({event}) => {
 
 
     
+
+    
     const handleEditEvent = async(e) => {
         e.preventDefault()
         if(editedEventName !== ""){
