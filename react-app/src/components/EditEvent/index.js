@@ -4,7 +4,7 @@ import { Modal } from '../../context/modal';
 import { useSelector, useDispatch } from 'react-redux'
 import { editOneEvent, removeEvent } from '../../store/events'
 import './editEvent.css'
-import { getAllEvents } from '../../store/events';
+// import { getAllEvents } from '../../store/events';
 
 
 export const EditEvent = ({event}) => {

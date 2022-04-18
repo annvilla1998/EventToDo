@@ -2,7 +2,7 @@
 .tasks-container {
     display:flex;
     flex-direction: column;
-    min-width: 60vw;
+    min-width: 70vw;
     width: 100%;
     height: auto;
     align-items: center;
