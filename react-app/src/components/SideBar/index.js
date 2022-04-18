@@ -13,7 +13,7 @@ import { useHistory, Link } from 'react-router-dom';
 export const SideBar = () => {
 
     const [showModal, setShowModal] = useState(false);
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
     const events = useSelector(state => state.pageState.events)
     const eventsArr = Object.values(events)
     const dispatch = useDispatch();

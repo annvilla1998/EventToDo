@@ -1,7 +1,13 @@
 
 
-export const TodayTasks = ({task}) => {
-
+export const TodayTasks = ({task, today}) => {
+    // const date = new Date(task.due_date)
+    // const dueDate = date.getDate()
+    // const dueMonth = date.getMonth()
+    // const dueYear = date.getFullYear()
+    // const parsedDueDate = `${dueMonth}/${dueDate}/${dueYear}`
+    
+    
     return  (
         <>
             <div className="task-list-container" key={task.id}>
@@ -12,7 +18,6 @@ export const TodayTasks = ({task}) => {
                     <li className="task due-date">{task?.due_date}</li>
                 </div>
             </div>
-
         </>
     )
 }
