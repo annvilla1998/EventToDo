@@ -55,7 +55,7 @@ export const Tasks = ({task}) => {
                         <li className="task description">{task?.description}</li>
                         <li className="task due-date">{task?.due_date}</li>
                     </div>
-                        <i onClick={() => setShowModal(true)} className="fa-solid fa-pen-to-square"></i>
+                        <i id='edit-delete-task' onClick={() => setShowModal(true)} className="fa-solid fa-pen-to-square"></i>
                         {showModal && (
                             <Modal onClose={() =>setShowModal(false)}>
                                 <div className="edit-task-form">
@@ -88,9 +88,7 @@ export const Tasks = ({task}) => {
                                 </div>
                             </Modal>
                         )}
-                    <div onClick={() => setDeleteConfirmationModal(true)}>
-                        <i className="fa-solid fa-trash-can"></i>
-                    </div>
+                    <i id='edit-delete-task' onClick={() => setDeleteConfirmationModal(true)} className="fa-solid fa-trash-can"></i>
                     {deleteConfirmationModal && (
                         <Modal onClose={() =>setDeleteConfirmationModal(false)}>
                             <div className="delete-confirmation-modal">

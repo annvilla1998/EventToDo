@@ -104,6 +104,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
     padding:8px;
+    color:white;
 }
 
 
@@ -153,7 +154,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
     padding:8px;
+    color:white;
 }
+
 
 .delete-confirmation-modal {
     width: 300px;
@@ -173,6 +176,7 @@
     
 }
 
+
 .delete-confirmation-buttons button {
     border-radius: 5px;
     border: 1px solid rgb(0, 0, 0, 0.1);
@@ -181,5 +185,19 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
     padding:8px;
+    color:white;
 }
 
+
+#edit-delete-task {
+    display: none;
+    opacity: 0.5;
+}
+
+.task-list:hover #edit-delete-task {
+    display: block;
+}
+
+#edit-delete-task:hover {
+    opacity: 1;
+}

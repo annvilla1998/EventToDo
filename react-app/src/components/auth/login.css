@@ -20,7 +20,7 @@
     width: 100vw;
 }
 
-.loginLogo {
+#loginLogo {
     display:flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -29,7 +29,7 @@
     justify-content: flex-end;
 }
 
-.loginLogo img{
+#loginLogo img{
     width: 60px;
     height: 60px;
 }

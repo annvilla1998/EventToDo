@@ -43,7 +43,7 @@ const LoginForm = () => {
     <div id="login-page">
       <div className='loginFormContainer'>
         <div className="loginForm">
-            <div className="loginLogo">
+            <div className="animate__animated animate__backInLeft" id="loginLogo">
               eventtodo<img alt="logo" src={logo}/>
             </div>
             <div className="loginFormContent">
