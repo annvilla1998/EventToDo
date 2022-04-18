@@ -58,11 +58,11 @@ export const SideBar = () => {
                                     <h2>Add event</h2>
                                     <div className="new-event-form">
                                     <form>
-                                        <div id="errors">
+                                        {/* <div id="errors">
                                             {errors.map((error, ind) => (
                                                 <div key={ind}>{error}</div>
                                             ))}
-                                        </div>
+                                        </div> */}
                                         <label>Name</label>
                                         <input
                                         type='text'
