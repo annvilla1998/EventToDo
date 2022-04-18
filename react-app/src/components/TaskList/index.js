@@ -60,13 +60,21 @@ export const TaskList = ({events}) => {
     const openForm = async(e) => {
         e.preventDefault()
         const taskForm = document.querySelector(".new-task-form form")
+        const addTaskIcon = document.querySelector("#addTask i")
+        const addTaskP = document.querySelector("#addTask p")
         taskForm.style.display = "block"
+        addTaskIcon.style.display = 'none'
+        addTaskP.style.display = 'none'
     }
     
     const cancelForm = async(e) => {
         e.preventDefault()
         const taskForm = document.querySelector(".new-task-form form")
+        const addTaskIcon = document.querySelector("#addTask i")
+        const addTaskP = document.querySelector("#addTask p")
         taskForm.style.display = "none"
+        addTaskIcon.style.display = 'block'
+        addTaskP.style.display = 'block'
     }
 
     return (

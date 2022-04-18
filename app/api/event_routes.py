@@ -80,3 +80,23 @@ def add_task():
     db.session.commit()
     
     return new_task.to_dict()
+
+
+@event_routes.route('/tasks/<id>', methods=["PUT", "DELETE"])
+def edit_delete_task():
+    if request.method == "PUT":
+        data = request.get_json(force=True)
+        task = Task.query.filter(Task.id == id).first()
+        task.user_id = data["user_id"]
+        task.name = data["name"]
+        task.description = data["description"]
+        task.event_id = data["event_id"]
+        db.session.add(task)
+        db.session.commit()
+        return task.to_dict()
+
+    elif request.method == "DELETE":
+        task = Task.query.filter(Task.id == id).first()
+        db.session.delete(task)
+        db.session.commit()
+        return task.to_dict()
