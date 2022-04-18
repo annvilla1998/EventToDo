@@ -59,6 +59,21 @@
     opacity: 0.5;
 }
 
+#addTask i {
+    color:#00C78F;
+}
+
+#addTask:hover i {
+    background-color: #00C78F;
+    border-radius: 50%;
+    padding: 10px;
+    color: white;
+}
+
+#addTask:hover p {
+    color:#00C78F;
+}
+
 .new-task-form {
     display: flex;
     width: 150px;
@@ -90,3 +105,81 @@
     font-size: 15px;
     padding:8px;
 }
+
+
+
+.edit-task-form {
+    width: 450px;
+    height: 60vh;
+    background-color:white;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    
+}
+
+.edit-task-form form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+
+.edit-task-form input {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 2px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    padding: 6px;
+}
+
+.edit-task-form textarea {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 2px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    padding: 6px;
+}
+
+.edit-task-form button {
+    border-radius: 5px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    background-color:#00A173;
+    margin: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    padding:8px;
+}
+
+.delete-confirmation-modal {
+    width: 300px;
+    height: 20vh;
+    border-radius:20px;
+    background-color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    gap: 30px;
+}
+
+.delete-confirmation-buttons {
+    display:flex;
+    gap: 20px;
+    
+}
+
+.delete-confirmation-buttons button {
+    border-radius: 5px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    background-color:#00A173;
+    margin: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    padding:8px;
+}
+

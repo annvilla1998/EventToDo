@@ -88,15 +88,55 @@ export const editOneEvent = (event) => async (dispatch) => {
 
 // ---- tasks -----
 const ADD_TASK = 'session/ADD_TASK'
+const EDIT_TASK = 'session/EDIT_TASK'
+const DELETE_TASK = 'session/DELETE_TASK'
 
 export const addTask = (task) => ({
     type: ADD_TASK,
     payload: task
 }) 
 
+export const editTask = (task) => ({
+    type: EDIT_TASK,
+    payload: task
+})
 
-export const createTask = (eventId, task) => async(dispatch) => {
-    const response = await fetch(`api/events/${eventId}/tasks`,{
+export const deleteTask = (id) => ({
+    type: DELETE_TASK,
+    payload: id
+})
+
+
+export const editOneTask = (task) => async(dispatch) => {
+    const response = await fetch(`/api/events/tasks/${task.id}`, {
+        method: "PUT",
+        headers: {
+          'Accept': 'application/json',
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task)
+    })
+    if(response.ok) {
+        const task = await response.json();
+        await dispatch(editTask(task))
+        return task
+    }
+}
+
+export const removeTask = (id) => async(dispatch) => {
+    const res = await fetch(`/api/events/tasks/${id}`, {
+        method:"DELETE"
+    })
+
+    if(res.ok) {
+        const task = await res.json()
+        await dispatch(deleteTask(task))
+        return task
+    }
+}
+
+export const createTask = (task) => async(dispatch) => {
+    const response = await fetch(`/api/events/tasks`,{
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -104,9 +144,10 @@ export const createTask = (eventId, task) => async(dispatch) => {
         },
         body: JSON.stringify(task)
     })
-
+// console.log(task)
     if(response.ok) {
-        const task = response.json()
+        const task = await response.json()
+        // console.log(task)
         await dispatch(addTask(task))
         return task
     }
@@ -132,7 +173,7 @@ export default function eventsReducer(state= initialState, action) {
             delete newState.events[action.payload.id]
             return newState
         case ADD_TASK:
-            newState.events.tasks[action.payload.id] = action.payload
+            newState.events[action.payload.event_id].tasks[action.payload.id] = action.payload
             return newState
         default:
         return state

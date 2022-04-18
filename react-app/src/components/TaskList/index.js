@@ -4,7 +4,8 @@ import '../Tasks/tasks.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react'
-// import { useSelector } from 'react-'
+import { useSelector, useDispatch } from 'react-redux'
+import { createTask } from '../../store/events'
 
 
 export const TaskList = ({events}) => {
@@ -13,22 +14,31 @@ export const TaskList = ({events}) => {
     const [description, setDescription] = useState('')
     const { id } = useParams()
     const tasks = events[id]?.tasks
-    // const sessionUser = useSelector(state => state.session.user);
-
+    const sessionUser = useSelector(state => state.session.user);
+    const [errors, setErrors] = useState([]);
+    const dispatch = useDispatch();
 
     const addTask = async(e) => {
-    //     e.preventDefault()
+        e.preventDefault()
         
-    //     newTask = {
-    //         name: taskName,
-    //         description: description,
-    //         due_date: dueDate,
-    //         event_id: id,
-    //         user_id: sessionUser.id
+        const newTask = {
+            name: taskName,
+            description: description,
+            due_date: dueDate.toLocaleDateString(),
+            event_id: parseInt(id),
+            user_id: sessionUser.id
+        }
+        // console.log(newTask)
+        if(newTask.name !== ""){
+            await dispatch(createTask(newTask))
+            setErrors([])
+            const taskForm = document.querySelector(".new-task-form form")
+            taskForm.style.display = "none"
+        }else{
+            errors.push("Give your task a name!")
         }
 
-
-    // }
+    }
 
     //     const addTaskIcon = document.getElementById("addTask")
     //     const taskForm = document.querySelector(".new-task-form form")
@@ -50,13 +60,21 @@ export const TaskList = ({events}) => {
     const openForm = async(e) => {
         e.preventDefault()
         const taskForm = document.querySelector(".new-task-form form")
+        const addTaskIcon = document.querySelector("#addTask i")
+        const addTaskP = document.querySelector("#addTask p")
         taskForm.style.display = "block"
+        addTaskIcon.style.display = 'none'
+        addTaskP.style.display = 'none'
     }
     
     const cancelForm = async(e) => {
         e.preventDefault()
         const taskForm = document.querySelector(".new-task-form form")
+        const addTaskIcon = document.querySelector("#addTask i")
+        const addTaskP = document.querySelector("#addTask p")
         taskForm.style.display = "none"
+        addTaskIcon.style.display = 'block'
+        addTaskP.style.display = 'block'
     }
 
     return (
@@ -74,10 +92,14 @@ export const TaskList = ({events}) => {
                 </div>
                 <div className="new-task-form">
                     <form style={{display:'none'}}>
+                        <div id="errors">
+                            {errors.map((error, ind) => (
+                                <div key={ind}>{error}</div>
+                            ))}
+                        </div>
                         <input
                         type="text"
                         placeholder="Task Name"
-                        required={true}
                         value={taskName}
                         onChange={e => setTaskName(e.target.value)}
                         />
