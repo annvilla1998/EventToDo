@@ -24,9 +24,7 @@ export const SideBar = () => {
     
 
     useEffect(() => {
-        (async () => (
-          await dispatch(getAllEvents())
-        ))();
+        dispatch(getAllEvents())
     },[dispatch])
 
     const onSubmit = async(e) => {
@@ -36,14 +34,10 @@ export const SideBar = () => {
             name: eventName,
             user_id: sessionUser.id
         }
-        const data = await dispatch(createEvent(event))
-        if (data) {
-            setErrors(data)
-        }else{
-            setShowModal(false)
-            setEventName("")
-            history.push(`/events/${eventsArr[eventsArr.length - 1].id}`)
-        }    
+        await dispatch(createEvent(event))   
+        setShowModal(false)
+        history.push(`/events/${eventsArr[eventsArr.length - 1].id}`)
+        setEventName("")
     }
 
 

@@ -17,7 +17,7 @@ export const EditEvent = ({event}) => {
 
     
 
-    
+
     const handleEditEvent = async(e) => {
         e.preventDefault()
         if(editedEventName !== ""){
@@ -26,7 +26,7 @@ export const EditEvent = ({event}) => {
                 name: editedEventName,
                 user_id: sessionUser.id
             }
-            await dispatch(editOneEvent(editedEvent)).then(()=> dispatch(getAllEvents()))
+            dispatch(editOneEvent(editedEvent))
             setShowModal(false)
             setErrors([])
         }else{
@@ -37,7 +37,7 @@ export const EditEvent = ({event}) => {
 
     const handleDeleteEvent = async(e) => {
         e.preventDefault()
-        await dispatch(removeEvent(event.id)).then(()=> dispatch(getAllEvents()))
+        dispatch(removeEvent(event.id))
         setShowModal(false)        
     }
 

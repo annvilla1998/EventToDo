@@ -86,10 +86,16 @@ export const editOneEvent = (event) => async (dispatch) => {
 }
 
 
-// ---- tasks -----
+// ---- Tasks -----
 const ADD_TASK = 'session/ADD_TASK'
 const EDIT_TASK = 'session/EDIT_TASK'
 const DELETE_TASK = 'session/DELETE_TASK'
+const GET_TASKS = 'session/GET_TASKS'
+
+export const getTasks = (tasks) => ({
+    type: GET_TASKS,
+    payload: tasks
+})
 
 export const addTask = (task) => ({
     type: ADD_TASK,
@@ -106,6 +112,14 @@ export const deleteTask = (id) => ({
     payload: id
 })
 
+export const getAllTasks = (id) => async(dispatch) => {
+    const response = await fetch(`/api/events/${id}/tasks`)
+    if(response.ok){
+        const tasks = await response.json()
+        // console.log(tasks)
+        await dispatch(getTasks(tasks))
+    }
+}
 
 export const editOneTask = (task) => async(dispatch) => {
     const response = await fetch(`/api/events/tasks/${task.id}`, {
@@ -154,32 +168,82 @@ export const createTask = (task) => async(dispatch) => {
 }
 
 
-const initialState = { events: {}}
+const initialState = { events: {}, tasks: {}}
 
 export default function eventsReducer(state= initialState, action) {
-    const newState = { ...state }
-
+    
     switch(action.type) {
         case GET_EVENTS:
-            newState.events = action.payload
+            let newState = {...state, events: {...action.payload}}
             return newState
         case CREATE_EVENT:
-            newState.events[action.payload.id] = action.payload
-            return newState
+            return {
+                ...state, 
+                events: {
+                    ...state.events,
+                    [action.payload.id]: action.payload
+                },
+            }
         case EDIT_EVENT:
-            newState.events[action.payload.id] = action.payload
-            return newState
+            state.events[action.payload.id] = action.payload
+            return { 
+                ...state,
+                events: {
+                    ...state.events
+                },
+            }
         case DELETE_EVENT:
-            delete newState.events[action.payload.id]
-            return newState
-        case ADD_TASK:
-            newState.events[action.payload.event_id].tasks[action.payload.id] = action.payload
-            return newState
+            delete state.events[action.payload.id]
+            return {
+                ...state,
+                events: {
+                    ...state.events
+                }
+            }
+        case GET_TASKS:
+            return {
+                ...state,
+                events: {
+                    ...state.events
+                },
+                tasks: {
+                    ...action.payload
+                }
+            }
+        
+        case ADD_TASK:        
+           return {
+               ...state,
+               events: {
+                   ...state.events
+               },
+               tasks: {
+                ...state.tasks,
+                [action.payload.id]: action.payload
+                }
+           }
         case EDIT_TASK:
-            newState.events[action.payload.event_id].tasks[action.payload.id] = action.payload
+           state.tasks[action.payload.id] = action.payload
+           return {
+               ...state,
+               events: {
+                   ...state.events,
+               },
+               tasks: {
+                   ...state.tasks
+               }
+           }
         case DELETE_TASK:
-            delete newState.events[action.payload.event_id].tasks[action.payload.id]
-            return newState
+            delete state.tasks[action.payload.id]
+            return {
+                ...state,
+                events: {
+                    ...state.events
+                },
+                tasks: {
+                    ...state.tasks
+                }
+            }
         default:
         return state
     }
