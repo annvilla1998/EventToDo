@@ -56,7 +56,6 @@ const LoginForm = () => {
     } else{
       carouselImageIndex++;
     }
-    console.log(carousel[carouselImageIndex])
     
     carousel[carouselImageIndex].className = "active";
 

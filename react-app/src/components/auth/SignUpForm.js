@@ -63,7 +63,6 @@ const SignUpForm = () => {
     } else{
       carouselImageIndex++;
     }
-    console.log(carousel[carouselImageIndex])
     
     carousel[carouselImageIndex].className = "active";
 
