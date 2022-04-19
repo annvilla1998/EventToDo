@@ -133,7 +133,7 @@ const LoginForm = () => {
               <div id="tech" >PostgreSQL</div>
               <div id="tech" >HTML</div>
               <div id="tech" >CSS</div>
-              <a className="tech-icons" href="https://www.linkedin.com/in/anabel-villalobos-5772ab196/" target=_blank"><i className="fa-brands fa-linkedin"></i></a>
+              <a className="tech-icons" href="https://www.linkedin.com/in/anabel-villalobos-5772ab196/" target="blank"><i className="fa-brands fa-linkedin"></i></a>
           </footer>
       </div>
     </div>
