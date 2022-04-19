@@ -130,7 +130,7 @@ footer {
     gap: 20px;
     color:white;
     align-items: center;
-    text-shadow: #FC0 1px 0 10px;
+    text-shadow: #00EDAA 1px 0 10px;
 }
 
 
@@ -167,7 +167,7 @@ footer {
     gap: 200px;
     background-color: transparent;
     z-index: 100;
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 #login-wrapper {
@@ -198,7 +198,7 @@ footer {
 .tech-icons i {
     font-size: 5em;
     color: white;
-    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+    text-shadow: 1px 1px 2px red, 0 0 1em #00EDAA, 0 0 0.2em #00EDAA;
     margin: 0px 40px;
 }
 

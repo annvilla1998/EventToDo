@@ -25,8 +25,8 @@
 }
 
 .edit-event-form input {
-    border-radius: 2px;
-    border: 1px solid rgb(0, 0, 0, 0.1);
+    border-radius: 5px;
+    border: 1px solid rgb(0, 0, 0, 0.3);
     padding: 6px;
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

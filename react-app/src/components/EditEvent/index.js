@@ -13,10 +13,8 @@ export const EditEvent = ({event}) => {
     const [editedEventName, setEditedEventName] = useState(event.name)
     const sessionUser = useSelector(state => state.session.user);
     const [errors, setErrors] = useState([]);
-
-
-    
-
+    const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
+ 
 
     const handleEditEvent = async(e) => {
         e.preventDefault()
@@ -38,7 +36,8 @@ export const EditEvent = ({event}) => {
     const handleDeleteEvent = async(e) => {
         e.preventDefault()
         dispatch(removeEvent(event.id))
-        setShowModal(false)        
+        setShowModal(false)   
+        setDeleteConfirmationModal(false)
     }
 
     return (
@@ -67,7 +66,18 @@ export const EditEvent = ({event}) => {
                             />
                         </form>
                         <button onClick={handleEditEvent} type="submit">Edit</button>
-                        <button onClick={handleDeleteEvent} type="submit">Delete</button>
+                        <button onClick={() => setDeleteConfirmationModal(true)} type="submit">Delete</button>
+                        {deleteConfirmationModal && (
+                        <Modal onClose={() =>setDeleteConfirmationModal(false)}>
+                            <div className="delete-confirmation-modal">
+                                Are you sure?
+                                <div className="delete-confirmation-buttons">
+                                    <button onClick={handleDeleteEvent}>Delete</button>
+                                    <button onClick={() => setDeleteConfirmationModal(false)} >Cancel</button>
+                                </div>
+                            </div>
+                        </Modal>
+                    )}
                         </div>
                     </div>
                 </Modal>

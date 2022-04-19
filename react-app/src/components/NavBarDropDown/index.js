@@ -8,16 +8,6 @@ export const NavBarDropDown = ({ user }) => {
         <div className='navbarDropDownMenu'>
             <div className='navbarDropDownList'>
                 <div>
-                    <NavLink to={`/users/${user.id}`} >
-                        Profile
-                    </NavLink>
-                </div>
-                <div>
-                    <NavLink to='/users' activeClassName='active'>
-                        Users
-                    </NavLink>
-                </div>
-                <div>
                     <LogoutButton />
                 </div>
             </div>

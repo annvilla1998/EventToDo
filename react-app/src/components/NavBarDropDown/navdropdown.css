@@ -1,21 +1,36 @@
 .navbarDropDownMenu {
     position: absolute;
     right: -15px;
-    top: 42px;
+    top: 48px;
     background-color: white;
     padding: 5px;
-    box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
+    margin-right:30px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border: 1px solid rgb(0, 0, 0, 0.2);
     border-radius: 3px;
-    width: 100px;
+    width: 80px;
     z-index: 4;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:flex;
+    font-size: 13px;
 }
 
+
+.navbarDropDownMenu button {
+    border-radius: 5px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    background-color:#00A173;
+    margin: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    padding:5px;
+    color:white;
+}
 
 .navbarDropDownList a {
     text-decoration: none;
     color: black;
     display:flex;
     flex-direction: column;
+    padding: 5px 10px;
 }
