@@ -65,8 +65,10 @@ export const EditEvent = ({event}) => {
                             onChange={e => setEditedEventName(e.target.value)}
                             />
                         </form>
-                        <button onClick={handleEditEvent} type="submit">Edit</button>
-                        <button onClick={() => setDeleteConfirmationModal(true)} type="submit">Delete</button>
+                        <div className="edit-delete-buttons">
+                            <button onClick={handleEditEvent} type="submit">Edit</button>
+                            <button onClick={() => setDeleteConfirmationModal(true)} type="submit">Delete</button>
+                        </div>
                         {deleteConfirmationModal && (
                         <Modal onClose={() =>setDeleteConfirmationModal(false)}>
                             <div className="delete-confirmation-modal">

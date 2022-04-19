@@ -1,6 +1,6 @@
 .edit-event-form-modal {
     width: 450px;
-    height: 60vh;
+    height: 40vh;
     background-color:white;
     display: flex;
     justify-content: center;
@@ -16,6 +16,10 @@
     gap: 10px;
 }
 
+.edit-event-form-modal h2 {
+    margin: 0px;
+}
+
 .edit-event-form-modal form {
     display: flex;
     flex-direction: column;
@@ -25,12 +29,11 @@
 }
 
 .edit-event-form input {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 5px;
     border: 1px solid rgb(0, 0, 0, 0.3);
     padding: 6px;
-    font-size: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
 
 .edit-event-form button {
@@ -40,14 +43,16 @@
     margin: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
-    padding:8px;
+    padding:5px;
     color:white;
+    width: 80px;
 }
 
 .event-link {
     display: flex;
     justify-content:space-between;
     flex-wrap: wrap;
+    font-size: 15px;
     /* margin: 20px */
 }
 
@@ -63,4 +68,9 @@
 
 .event-link:hover i {
     display: block;
+}
+
+.edit-delete-buttons {
+    display: flex;
+    justify-content: space-between;
 }

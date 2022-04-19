@@ -53,7 +53,7 @@ export const Tasks = ({task}) => {
                     <div className="task-name-description">
                         <li className="task name">{task?.name}</li>
                         <li className="task description">{task?.description}</li>
-                        <li className="task due-date">{task?.due_date}</li>
+                        <li className="task due-date">Scheduled For: {task?.due_date}</li>
                     </div>
                         <i id='edit-delete-task' onClick={() => setShowModal(true)} className="fa-solid fa-pen-to-square"></i>
                         {showModal && (
