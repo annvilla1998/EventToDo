@@ -16,7 +16,7 @@ export const Tasks = ({task}) => {
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
-    const [checked, setChecked] = useState(false)
+    // const [checked, setChecked] = useState(false)
     const today = Date.now();
 
     const validate = () => {
@@ -31,6 +31,11 @@ export const Tasks = ({task}) => {
 
         return validationErrors
     }
+
+    // const handleCompletedTask = () => {
+    //     const checkbox = document.querySelector(".task-checkbox")
+        
+    // }
 
     const handleEditTask = async(e) => {
         e.preventDefault()
@@ -61,17 +66,14 @@ export const Tasks = ({task}) => {
         e.preventDefault()
         setShowModal(false)
     }
-
+// console.log(checked)
+// onChange={handleCompletedTask}
     return (
         <div className="task-list">
             <div className="task-container">
                 <div className="task-list-container" key={task.id}>
                     <input className="task-checkbox" 
                     type="checkbox" 
-                    checked={checked === "" ? "": "checked"}
-                    onChange={({ target: {value, checked }}) => {
-                        setChecked((checked ? value : ""))
-                    }}
                     />
                     <div className="task-name-description">
                         <li className="task name">{task?.name}</li>
