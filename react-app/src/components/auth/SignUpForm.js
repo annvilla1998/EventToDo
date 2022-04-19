@@ -70,7 +70,7 @@ const SignUpForm = () => {
 
   setInterval(() => {
       changeCarousel();
-  }, 6000);
+  }, 4000);
 
 
   return (

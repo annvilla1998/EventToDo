@@ -34,7 +34,7 @@
     height:auto;
     align-items: center;
     width: 100vw;
-
+    margin-top: 40px;
 }
 
 #loginLogo {
@@ -164,32 +164,35 @@ footer {
     height: 100%;
     width: 100%;
     position: relative;
-    z-index: 100;
-    gap: 80px;
+    gap: 200px;
     background-color: transparent;
+    z-index: 100;
+    margin-top: 100px;
 }
 
 #login-wrapper {
-    position: relative;
-    width: -webkit-fill-available;
-    height: -webkit-fill-available;
+    position: absolute;
+    /* width: -webkit-fill-available;
+    height: -webkit-fill-available; */
     /* top:-68px; */
+    /* width: fit-content;
+    height: fit-content; */
+    margin: 0 auto;
 }
 
 
 
 .carousel-container {
-    width: -webkit-fill-available;
-    height: -webkit-fill-available;
+    /* width: -webkit-fill-available;
+    height: -webkit-fill-available; */
+    height: 100%;
+    width: 100%;
     /* width: 100vh;
     height: 100vh; */
     top:0;
     bottom: 0;
     z-index: -100;
     position: absolute;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .tech-icons i {

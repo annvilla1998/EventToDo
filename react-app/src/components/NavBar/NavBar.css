@@ -3,8 +3,9 @@ body {
     font-size: 18px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    height:auto;
-    min-height: 100vh;
+    width: fit-content;
+    height: 100%;
+    position: relative;
 }
 
 .navBar {
