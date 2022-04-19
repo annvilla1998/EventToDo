@@ -32,30 +32,37 @@ function App() {
 
   return (
     <BrowserRouter>
-    {sessionUser && (
-      <>
-        <NavBar user={sessionUser} />
+      {sessionUser && (
+        <>
+          <NavBar user={sessionUser} />
+        </>
+          )}
+
+      <div className="out">
+      {sessionUser && (
         <SideBar user={sessionUser}>
-        </SideBar>
-      </>
-    )}
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/today' exact={true} >
-            <Today/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/events/:id' exact={true} >
-          <TaskList events={sessionUser?.events}/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-        </ProtectedRoute>
-      </Switch>
-    </BrowserRouter>
+          </SideBar>
+        )}
+        <Switch>
+          <ProtectedRoute path='/today' exact={true} >
+              <Today/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/events/:id' exact={true} >
+            <TaskList events={sessionUser?.events}/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/' exact={true} >
+          </ProtectedRoute>
+        </Switch>
+      </div>
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+        </Switch>
+      </BrowserRouter>
   );
 }
 
