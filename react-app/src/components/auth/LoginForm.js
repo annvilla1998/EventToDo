@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
@@ -15,6 +15,29 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const [mousedOver, setMousedOver] = useState(false);
+
+  //carousel
+  useEffect(() => {
+    const carousel = [...document.querySelectorAll('.carousel img')];
+    let carouselImageIndex = 0;
+  
+    
+    const changeCarousel = () => {
+      carousel[carouselImageIndex].className = "";
+      if(carouselImageIndex >= carousel.length - 1){
+        carouselImageIndex = 0;
+      } else{
+        carouselImageIndex++;
+      }
+        carousel[carouselImageIndex].className = "active";
+  
+      }
+  
+        setInterval(() => {
+          changeCarousel();
+        }, 4000);
+  },[mousedOver])
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -43,43 +66,22 @@ const LoginForm = () => {
     return <Redirect to='/today' />;
   }
 
-
-  //carousel
-  const carousel = [...document.querySelectorAll('.carousel img')];
-
-  let carouselImageIndex = 0;
-
-  const changeCarousel = () => {
-    carousel[carouselImageIndex].className = "";
-    if(carouselImageIndex >= carousel.length - 1){
-      carouselImageIndex = 0;
-    } else{
-      carouselImageIndex++;
-    }
-    
-    carousel[carouselImageIndex].className = "active";
-
-  }
-
-  setInterval(() => {
-      changeCarousel();
-  }, 4000);
+  
 
   return (
-    <div id="login-wrapper">
+    <div onMouseOver={() => setMousedOver(true)} id="login-wrapper">
       <div className="carousel-container">
         <div className="carousel">
           <img src={image1} className="active" alt=""></img>
           <img src={image2} className="" alt=""></img>
           <img src={image3} className="" alt=""></img>
           <img src={image4} className="" alt=""></img>
-          {/* <img src="" alt=""></img> */}
         </div>
       </div>
       <div id="login-page">
         <div className='loginFormContainer'>
           <div className="loginForm">
-              <div className="animate__animated animate__backInLeft" id="loginLogo">
+              <div id="loginLogo">
                 eventtodo<img alt="logo" src={logo}/>
               </div>
               <div className="loginFormContent">

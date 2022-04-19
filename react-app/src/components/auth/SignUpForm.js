@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -18,6 +18,30 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const [mousedOver, setMousedOver] = useState(false);
+
+
+  //carousel
+  useEffect(() => {
+    const carousel = [...document.querySelectorAll('.carousel img')];
+    let carouselImageIndex = 0;
+  
+    
+    const changeCarousel = () => {
+      carousel[carouselImageIndex].className = "";
+      if(carouselImageIndex >= carousel.length - 1){
+        carouselImageIndex = 0;
+      } else{
+        carouselImageIndex++;
+      }
+        carousel[carouselImageIndex].className = "active";
+  
+      }
+  
+        setInterval(() => {
+          changeCarousel();
+        }, 4000);
+  },[mousedOver])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -51,30 +75,10 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
-  //carousel
-  const carousel = [...document.querySelectorAll('.carousel img')];
-
-  let carouselImageIndex = 0;
-
-  const changeCarousel = () => {
-    carousel[carouselImageIndex].className = "";
-    if(carouselImageIndex >= carousel.length - 1){
-      carouselImageIndex = 0;
-    } else{
-      carouselImageIndex++;
-    }
     
-    carousel[carouselImageIndex].className = "active";
-
-  }
-
-  setInterval(() => {
-      changeCarousel();
-  }, 4000);
-
 
   return (
-    <div id="login-wrapper">
+    <div onMouseOver={() => setMousedOver(true)} id="login-wrapper">
           <div className="carousel-container">
             <div className="carousel">
               <img src={image1} className="active" alt=""></img>
@@ -87,7 +91,7 @@ const SignUpForm = () => {
         <div id="login-page">
             <div className='loginFormContainer'>
                 <div className="signupForm">
-                    <div className="animate__animated animate__backInLeft" id="loginLogo">
+                    <div id="loginLogo">
                       eventtodo<img alt="logo" src={logo}/>
                     </div>
                     <div className="loginFormContent">
