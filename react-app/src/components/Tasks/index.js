@@ -16,10 +16,29 @@ export const Tasks = ({task}) => {
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
+    const [checked, setChecked] = useState(false)
+    const today = Date.now();
+
+    const validate = () => {
+        const validationErrors = []
+
+        if(!editedTaskName){
+            validationErrors.push("Give your task a name!")
+        }
+        if(Date.parse(editedDueDate) <= today){
+            validationErrors.push("Please choose a date in the future.")
+        }
+
+        return validationErrors
+    }
 
     const handleEditTask = async(e) => {
         e.preventDefault()
-        if(editedTaskName !== ""){
+
+        const errors = validate()
+
+        if(errors.length > 0) return setErrors(errors)
+
             const editedTask= {
                 id: task.id,
                 name: editedTaskName,
@@ -30,9 +49,6 @@ export const Tasks = ({task}) => {
            dispatch(editOneTask(editedTask))
             setShowModal(false)
             setErrors([])
-        }else{
-            errors.push("Give your task a name!")
-        }
     }
 
     const handleDeleteTask = async(e) => {
@@ -45,11 +61,18 @@ export const Tasks = ({task}) => {
         e.preventDefault()
         setShowModal(false)
     }
+
     return (
         <div className="task-list">
             <div className="task-container">
                 <div className="task-list-container" key={task.id}>
-                    <input className="task-checkbox" type="checkbox" />
+                    <input className="task-checkbox" 
+                    type="checkbox" 
+                    checked={checked === "" ? "": "checked"}
+                    onChange={({ target: {value, checked }}) => {
+                        setChecked((checked ? value : ""))
+                    }}
+                    />
                     <div className="task-name-description">
                         <li className="task name">{task?.name}</li>
                         <li className="task description">{task?.description}</li>

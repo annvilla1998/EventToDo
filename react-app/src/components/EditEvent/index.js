@@ -15,10 +15,23 @@ export const EditEvent = ({event}) => {
     const [errors, setErrors] = useState([]);
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
  
+    const validate = () => {
+        const validationErrors = []
+
+        if(editedEventName !== ""){
+            validationErrors.push("Give your event a name!")
+        }
+
+        return validationErrors
+    }
 
     const handleEditEvent = async(e) => {
         e.preventDefault()
-        if(editedEventName !== ""){
+
+        const errors = validate()
+
+        if(errors.length > 0) return setErrors(errors)
+
             const editedEvent = {
                 id: event.id,
                 name: editedEventName,
@@ -27,9 +40,7 @@ export const EditEvent = ({event}) => {
             dispatch(editOneEvent(editedEvent))
             setShowModal(false)
             setErrors([])
-        }else{
-            errors.push("Give your event a name!")
-        }
+            
     }
         
 

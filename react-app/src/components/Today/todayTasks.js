@@ -15,7 +15,7 @@ export const TodayTasks = ({task, today}) => {
                 <div className="task-name-description">
                     <li className="task name">{task?.name}</li>
                     <li className="task description">{task?.description}</li>
-                    <li className="task due-date">{task?.due_date}</li>
+                    <li className="task due-date">Scheduled for today</li>
                 </div>
             </div>
         </>

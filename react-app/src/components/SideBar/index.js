@@ -21,27 +21,36 @@ export const SideBar = () => {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
 
-    
-
     useEffect(() => {
         dispatch(getAllEvents())
     },[dispatch])
 
+    const validate = () => {
+        const validationErrors = []
+
+        if(editedEventName !== ""){
+            validationErrors.push("Give your event a name!")
+        }
+
+        return validationErrors
+    }
+
     const onSubmit = async(e) => {
         e.preventDefault()
-        if(eventName !== ""){
-            const event = {
-                name: eventName,
-                user_id: sessionUser.id
-            }
-            await dispatch(createEvent(event))   
-            setShowModal(false)
-            history.push(`/events/${eventsArr[eventsArr.length - 1].id}`)
-            setEventName("")
-            setErrors([])
-        }else{
-            errors.push("Give your event a name!")
+        
+        const errors = validate()
+
+        if(errors.length > 0) return setErrors(errors)
+
+        const event = {
+            name: eventName,
+            user_id: sessionUser.id
         }
+        dispatch(createEvent(event))   
+        setShowModal(false)
+        history.push(`/events/${eventsArr[eventsArr.length - 1].id}`)
+        setEventName("")
+        setErrors([])
     }
 
 
