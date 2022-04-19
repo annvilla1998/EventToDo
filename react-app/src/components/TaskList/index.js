@@ -22,6 +22,9 @@ export const TaskList = ({events}) => {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
+    const today = Date.now();
+    // console.log(today)
+
     useEffect(() => {
         dispatch(getAllTasks(parsedId));
     },[dispatch, parsedId])
@@ -29,22 +32,26 @@ export const TaskList = ({events}) => {
     const addTask = async(e) => {
         e.preventDefault()
         
-        const newTask = {
+        if(taskName === ""){
+            errors.push("Give your task a name!")
+        }else if(Date.parse(dueDate) < today){
+            errors.push("Please choose a date in the future.")
+        }else{
+            const newTask = {
             name: taskName,
             description: description,
             due_date: dueDate.toLocaleDateString(),
             event_id: parseInt(id),
             user_id: sessionUser.id
         }
-        if(newTask.name !== ""){
             dispatch(createTask(newTask))
             setErrors([])
             const taskForm = document.querySelector(".new-task-form form")
             taskForm.style.display = "none"
-        }else{
-            errors.push("Give your task a name!")
-        }
 
+        }
+        
+        
     }
         
         
@@ -68,7 +75,7 @@ export const TaskList = ({events}) => {
         addTaskIcon.style.display = 'block'
         addTaskP.style.display = 'block'
     }
-
+console.log(errors, taskName)
     return (
         <>
             <div className="tasks-container">

@@ -13,7 +13,7 @@ import { useHistory, Link } from 'react-router-dom';
 export const SideBar = () => {
 
     const [showModal, setShowModal] = useState(false);
-    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
     const events = useSelector(state => state.pageState.events)
     const eventsArr = Object.values(events)
     const dispatch = useDispatch();
@@ -29,15 +29,19 @@ export const SideBar = () => {
 
     const onSubmit = async(e) => {
         e.preventDefault()
-
-        const event = {
-            name: eventName,
-            user_id: sessionUser.id
+        if(eventName !== ""){
+            const event = {
+                name: eventName,
+                user_id: sessionUser.id
+            }
+            await dispatch(createEvent(event))   
+            setShowModal(false)
+            history.push(`/events/${eventsArr[eventsArr.length - 1].id}`)
+            setEventName("")
+            setErrors([])
+        }else{
+            errors.push("Give your event a name!")
         }
-        await dispatch(createEvent(event))   
-        setShowModal(false)
-        history.push(`/events/${eventsArr[eventsArr.length - 1].id}`)
-        setEventName("")
     }
 
 
@@ -58,11 +62,11 @@ export const SideBar = () => {
                                     <h2>Add event</h2>
                                     <div className="new-event-form">
                                     <form>
-                                        {/* <div id="errors">
+                                        <div id="errors">
                                             {errors.map((error, ind) => (
                                                 <div key={ind}>{error}</div>
                                             ))}
-                                        </div> */}
+                                        </div>
                                         <label>Name</label>
                                         <input
                                         type='text'
