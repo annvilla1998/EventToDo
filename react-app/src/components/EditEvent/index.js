@@ -18,7 +18,7 @@ export const EditEvent = ({event}) => {
     const validate = () => {
         const validationErrors = []
 
-        if(editedEventName !== ""){
+        if(editedEventName === ""){
             validationErrors.push("Give your event a name!")
         }
 

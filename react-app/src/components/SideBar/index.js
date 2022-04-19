@@ -28,7 +28,7 @@ export const SideBar = () => {
     const validate = () => {
         const validationErrors = []
 
-        if(eventName !== ""){
+        if(eventName === ""){
             validationErrors.push("Give your event a name!")
         }
 
