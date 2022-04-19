@@ -2,21 +2,15 @@
 
 #errors {
     color: red;
-
+    font-size: 13px;
 }
 
 
 #root {
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* height: 100%; */
     position: absolute;
-    /* width: 100%; */
     width: fit-content;
     height: fit-content;
     margin: 0 auto;
-    /* top: 68px; */
-    /* padding-top: 68px; */
 }
 
 

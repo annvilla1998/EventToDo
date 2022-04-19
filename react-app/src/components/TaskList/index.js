@@ -15,15 +15,27 @@ export const TaskList = ({events}) => {
     const [description, setDescription] = useState('')
     const { id } = useParams()
     const parsedId = parseInt(id)
-    // const tasks = Object.values(events[id]?.tasks)
     const tasksObj = useSelector(state => state.pageState.tasks)
     const tasks = Object.values(tasksObj)
     const sessionUser = useSelector(state => state.session.user);
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
-    // const [isLoaded, setIsLoaded] = useState(true)
-
     const today = Date.now();
+
+    const validate = () => {
+        const validationErrors = []
+
+        if(!taskName){
+            validationErrors.push("Give your task a name!")
+        }
+        
+        if(Date.parse(dueDate) <= today){
+            validationErrors.push("Please choose a date in the future.")
+        }
+        
+        return validationErrors
+    }
+
 
     useEffect(() => {
         dispatch(getAllTasks(parsedId));
@@ -32,23 +44,27 @@ export const TaskList = ({events}) => {
     const addTask = async(e) => {
         e.preventDefault()
         
-        if(taskName === ""){
-            errors.push("Give your task a name!")
-        }else if(Date.parse(dueDate) <= today){
-            errors.push("Please choose a date in the future.")
-        }else{
-            const newTask = {
-            name: taskName,
-            description: description,
-            due_date: dueDate.toLocaleDateString(),
-            event_id: parseInt(id),
-            user_id: sessionUser.id
+        const errors = validate()
+
+        if(errors.length > 0) return setErrors(errors)
+
+        const newTask = {
+        name: taskName,
+        description: description,
+        due_date: dueDate.toLocaleDateString(),
+        event_id: parseInt(id),
+        user_id: sessionUser.id
         }
-            dispatch(createTask(newTask))
-            setErrors([])
-            const taskForm = document.querySelector(".new-task-form form")
-            taskForm.style.display = "none"
-        }
+        dispatch(createTask(newTask))
+        setErrors([])
+        setTaskName('')
+        setDescription('')
+        const taskForm = document.querySelector(".new-task-form form")
+        const addTaskIcon = document.querySelector("#addTask i")
+        const addTaskP = document.querySelector("#addTask p")
+        taskForm.style.display = "none"
+        addTaskIcon.style.display = 'block'
+        addTaskP.style.display = 'block'
     }
         
         

@@ -28,11 +28,13 @@ const NavBar = ({ user }) => {
   return (
     <nav className="navBar">       
         <div className='navbarDropDownContainer'>
+          <div className="profile-circle">
             <img
                 src={user.profile_image}
                 onClick={clickHandler}
                 className='navbar-profile-photo'
                 alt='profile pic' />
+          </div>
             {showDropDown &&
                 <NavBarDropDown user={user} />
             }
