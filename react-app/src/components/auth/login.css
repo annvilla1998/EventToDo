@@ -1,3 +1,18 @@
+.signupForm{
+    width: 500px;
+    padding: 25px;
+    border-radius: 8px;
+    border: solid 1px #323231;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 670px;
+    height: auto;
+    max-height: 80vh;
+    background-color:white;
+    box-shadow: 0 0 20px #c8c8c7;
+}
+
 .loginForm{
     width: 500px;
     padding: 25px;
@@ -9,7 +24,8 @@
     min-height: 50vh;
     height: auto;
     max-height: 80vh;
-    
+    background-color:white;
+    box-shadow: 0 0 20px #c8c8c7;
 }
 
 .loginFormContainer {
@@ -18,6 +34,7 @@
     height:auto;
     align-items: center;
     width: 100vw;
+
 }
 
 #loginLogo {
@@ -103,18 +120,82 @@
     color: #00C78F;
 }
 
-#login-page {
-    display:flex; 
-    flex-direction:column;
-    justify-content:space-between;
-    height: 90vh;
-}
 
 footer {
     display:flex;
     justify-content:center;
     flex-direction: row;
     margin: 0px 0px 30px;
-    font-size: 12px;
+    font-size: 14px;
     gap: 20px;
+    color:white;
+    align-items: center;
+    text-shadow: #FC0 1px 0 10px;
 }
+
+
+
+.carousel {
+    width: 100%;
+    z-index: -100;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    
+}
+
+.carousel img {
+    position: absolute;
+    width:100%;
+    height: 100%; 
+    object-fit: cover;
+    opacity: 0;
+    transition: 1s;
+}
+
+.carousel img.active {
+    opacity: 1;
+}
+
+#login-page {
+    display:flex; 
+    flex-direction:column;
+    justify-content:space-between;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 100;
+    gap: 80px;
+    background-color: transparent;
+}
+
+#login-wrapper {
+    position: relative;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    /* top:-68px; */
+}
+
+
+
+.carousel-container {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    /* width: 100vh;
+    height: 100vh; */
+    top:0;
+    bottom: 0;
+    z-index: -100;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tech-icons i {
+    font-size: 5em;
+    color: white;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+    margin: 0px 40px;
+}
+

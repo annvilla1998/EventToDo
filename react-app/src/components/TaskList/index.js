@@ -21,9 +21,9 @@ export const TaskList = ({events}) => {
     const sessionUser = useSelector(state => state.session.user);
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
+    // const [isLoaded, setIsLoaded] = useState(true)
 
     const today = Date.now();
-    // console.log(today)
 
     useEffect(() => {
         dispatch(getAllTasks(parsedId));
@@ -34,7 +34,7 @@ export const TaskList = ({events}) => {
         
         if(taskName === ""){
             errors.push("Give your task a name!")
-        }else if(Date.parse(dueDate) < today){
+        }else if(Date.parse(dueDate) <= today){
             errors.push("Please choose a date in the future.")
         }else{
             const newTask = {
@@ -48,10 +48,7 @@ export const TaskList = ({events}) => {
             setErrors([])
             const taskForm = document.querySelector(".new-task-form form")
             taskForm.style.display = "none"
-
         }
-        
-        
     }
         
         
@@ -75,7 +72,7 @@ export const TaskList = ({events}) => {
         addTaskIcon.style.display = 'block'
         addTaskP.style.display = 'block'
     }
-console.log(errors, taskName)
+
     return (
         <>
             <div className="tasks-container">
@@ -85,10 +82,10 @@ console.log(errors, taskName)
                             <Tasks task={task} />
                         </div>
                     ))}
-                <div onClick={openForm} id="addTask">
-                    <i className="fa-solid fa-plus"></i>
-                    <p>Add Task</p>
-                </div>
+                    <div onClick={openForm} id="addTask">
+                        <i className="fa-solid fa-plus"></i>
+                        <p>Add Task</p>
+                    </div>
                 <div className="new-task-form">
                     <form style={{display:'none'}}>
                         <div id="errors">
