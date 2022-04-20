@@ -92,6 +92,9 @@ const EDIT_TASK = 'session/EDIT_TASK'
 const DELETE_TASK = 'session/DELETE_TASK'
 const GET_TASKS = 'session/GET_TASKS'
 const SET_COMPLETED = 'session/SET_COMPLETED'
+// const GET_COMPLETED = 'session/GET_COMPLETED'
+
+// export const 
 
 export const getTasks = (tasks) => ({
     type: GET_TASKS,
@@ -278,6 +281,8 @@ export default function eventsReducer(state= initialState, action) {
                    ...state.tasks
                }
            }
+        // case GET_COMPLETED:
+        //     return state
         default:
         return state
     }

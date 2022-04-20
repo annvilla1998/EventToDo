@@ -11,6 +11,7 @@ import { Today } from './components/Today'
 import { authenticate } from './store/session';
 import {SideBar} from './components/SideBar'
 import { TaskList } from './components/TaskList/index'
+import { Completed } from './components/Completed';
 // import { Events } from './components/Events/index'
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
         <Switch>
           <ProtectedRoute path='/today' exact={true} >
               <Today/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/completed' exact={true} >
+              <Completed/>
           </ProtectedRoute>
           <ProtectedRoute path='/events/:id' exact={true} >
             <TaskList events={sessionUser?.events}/>
