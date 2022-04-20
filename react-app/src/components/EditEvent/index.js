@@ -61,7 +61,7 @@ export const EditEvent = ({event}) => {
             {showModal && (
                 <Modal onClose={()=> setShowModal(false)}>
                     <div className="edit-event-form-modal">
-                        <h2>Edit event</h2>
+                        <h3>Edit event</h3>
                         <div className="edit-event-form">
                         <form>
                             <div id="errors">

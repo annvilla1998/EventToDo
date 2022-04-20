@@ -80,7 +80,7 @@ export const Tasks = ({task}) => {
                         {showModal && (
                             <Modal onClose={() =>setShowModal(false)}>
                                 <div className="edit-task-form">
-                                    <h2>Edit Task</h2>
+                                    <h3>Edit Task</h3>
                                     <form>
                                         <div id="errors">
                                             {errors.map((error, ind) => (
