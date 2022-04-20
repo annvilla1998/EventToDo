@@ -53,7 +53,7 @@
     border-radius: 20px;
 }
 
-.event-form-modal h2 {
+.event-form-modal h3 {
     margin: 0px;
 }
 
@@ -91,18 +91,18 @@
     color:white;
 }
 
-.add-event-h2 {
+.add-event-h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0px 20px;
 }
 
-.add-event-h2 i {
+.add-event-h3 i {
     font-size:35px;
 }
 
-.add-event-h2 i:hover {
+.add-event-h3 i:hover {
     opacity: 0.5;
 }
 
@@ -111,7 +111,7 @@
     color: black;
 }
 
-.today-link h2 {
+.today-link h3 {
     margin: 20px;
 
 }

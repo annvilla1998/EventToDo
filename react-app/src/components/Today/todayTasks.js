@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { Modal } from '../../context/modal';
 import '../Tasks/tasks.css'
 
-export const TodayTasks = ({task, today}) => {
+export const TodayTasks = ({task}) => {
     // const date = new Date(task.due_date)
     // const dueDate = date.getDate()
     // const dueMonth = date.getMonth()

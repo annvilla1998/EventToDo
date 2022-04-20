@@ -92,9 +92,18 @@ const EDIT_TASK = 'session/EDIT_TASK'
 const DELETE_TASK = 'session/DELETE_TASK'
 const GET_TASKS = 'session/GET_TASKS'
 const SET_COMPLETED = 'session/SET_COMPLETED'
-// const GET_COMPLETED = 'session/GET_COMPLETED'
+const GET_COMPLETED = 'session/GET_COMPLETED'
+const GET_TODAY_TASKS = 'session/GET_TODAY_TASKS'
 
-// export const 
+export const getCompleted = (tasks) => ({
+    type: GET_COMPLETED,
+    payload: tasks
+})
+
+export const getToday = (tasks) => ({
+    type: GET_TODAY_TASKS,
+    payload: tasks
+})
 
 export const getTasks = (tasks) => ({
     type: GET_TASKS,
@@ -121,6 +130,21 @@ export const setCompleted = (task) => ({
     payload: task
 })
 
+export const getCompletedTasks = () => async(dispatch) => {
+    const response = await fetch('/api/tasks/completed')
+    if(response.ok){
+        const tasks = await response.json()
+        await dispatch(getCompleted(tasks))
+    }
+}
+
+export const getTodayTasks = () => async(dispatch) => {
+    const response = await fetch('/api/tasks/today')
+    if(response.ok){
+        const tasks = await response.json()
+        await dispatch(getToday(tasks))
+    }
+}
 
 export const setCompletedTask = (task) => async (dispatch) => {
     const response = await fetch(`/api/tasks/${task.id}`,{
@@ -281,8 +305,10 @@ export default function eventsReducer(state= initialState, action) {
                    ...state.tasks
                }
            }
-        // case GET_COMPLETED:
-        //     return state
+        case GET_TODAY_TASKS:
+            return {...state, tasks: {...action.payload}}
+        case GET_COMPLETED:
+            return {...state, tasks: {...action.payload}}
         default:
         return state
     }

@@ -58,20 +58,20 @@ export const SideBar = () => {
         <div className="sidebar-container">
             <div className="sidebar-content">
                 <div className="today-link">
-                    <Link to="/today"><h2>Today</h2></Link>
+                    <Link to="/today"><h3>Today</h3></Link>
                 </div>
                 <div className="today-link">
-                    <Link to="/completed"><h2>Completed</h2></Link>
+                    <Link to="/completed"><h3>Completed</h3></Link>
                 </div>
                 <div className="events-list">
-                    <div className="add-event-h2">
-                        <h2>Events</h2>
+                    <div className="add-event-h3">
+                        <h3>Events</h3>
                         <div><i onClick={() => setShowModal(true)} className="fa-solid fa-plus"></i>
                     </div>
                         {showModal && (
                             <Modal onClose={() =>setShowModal(false)}>
                                 <div className="event-form-modal">
-                                    <h2>Add event</h2>
+                                    <h3>Add event</h3>
                                     <div className="new-event-form">
                                     <form>
                                         <div id="errors">

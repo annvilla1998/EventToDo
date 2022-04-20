@@ -92,7 +92,7 @@ export const TaskList = ({events}) => {
     return (
         <>
             <div className="tasks-container">
-                <h2>Tasks</h2>
+                <h3>Tasks</h3>
                     {tasks?.map(task => (
                         <div key={task?.id}>
                             <Tasks task={task} />
