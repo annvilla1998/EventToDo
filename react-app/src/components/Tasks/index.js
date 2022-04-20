@@ -1,10 +1,11 @@
 import './tasks.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { editOneTask, removeTask } from '../../store/events'
+import { editOneTask, removeTask} from '../../store/events'
 import { Modal } from '../../context/modal';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { SetCompleted } from './setComplete.js'
 
 
 export const Tasks = ({task}) => {
@@ -16,7 +17,6 @@ export const Tasks = ({task}) => {
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
-    // const [checked, setChecked] = useState(false)
     const today = Date.now();
 
     const validate = () => {
@@ -32,10 +32,6 @@ export const Tasks = ({task}) => {
         return validationErrors
     }
 
-    // const handleCompletedTask = () => {
-    //     const checkbox = document.querySelector(".task-checkbox")
-        
-    // }
 
     const handleEditTask = async(e) => {
         e.preventDefault()
@@ -44,12 +40,15 @@ export const Tasks = ({task}) => {
 
         if(errors.length > 0) return setErrors(errors)
 
+        // const checkbox = document.querySelector(".task-checkbox")
+
             const editedTask= {
                 id: task.id,
                 name: editedTaskName,
                 description: editedTaskDescription,
                 user_id: sessionUser.id,
-                event_id: task.event_id
+                event_id: task.event_id,
+                // completed: checkbox.checked
             }
            dispatch(editOneTask(editedTask))
             setShowModal(false)
@@ -66,15 +65,12 @@ export const Tasks = ({task}) => {
         e.preventDefault()
         setShowModal(false)
     }
-// console.log(checked)
-// onChange={handleCompletedTask}
+
     return (
-        <div className="task-list">
+    <div className="task-list">
             <div className="task-container">
                 <div className="task-list-container" key={task.id}>
-                    <input className="task-checkbox" 
-                    type="checkbox" 
-                    />
+                    <SetCompleted task={task} />
                     <div className="task-name-description">
                         <li className="task name">{task?.name}</li>
                         <li className="task description">{task?.description}</li>

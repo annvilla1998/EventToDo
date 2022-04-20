@@ -202,10 +202,11 @@
     font-size: 13px;
 }
 
-.task-list:hover #edit-delete-task {
-    display: block;
-}
 
 #edit-delete-task:hover {
     opacity: 1;
+}
+
+.task-list-container:hover #edit-delete-task {
+    display: block;
 }

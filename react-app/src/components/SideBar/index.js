@@ -60,6 +60,9 @@ export const SideBar = () => {
                 <div className="today-link">
                     <Link to="/today"><h2>Today</h2></Link>
                 </div>
+                <div className="today-link">
+                    <Link to="/completed"><h2>Completed</h2></Link>
+                </div>
                 <div className="events-list">
                     <div className="add-event-h2">
                         <h2>Events</h2>
