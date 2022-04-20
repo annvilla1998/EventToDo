@@ -101,7 +101,7 @@ def edit_delete_task(id):
         task.name = data["name"]
         task.description = data["description"]
         task.event_id = data["event_id"]
-        task.completed = data["completed"]
+        # task.completed = data["completed"]
         db.session.add(task)
         db.session.commit()
         return task.to_dict()
