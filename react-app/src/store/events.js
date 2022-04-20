@@ -91,6 +91,7 @@ const ADD_TASK = 'session/ADD_TASK'
 const EDIT_TASK = 'session/EDIT_TASK'
 const DELETE_TASK = 'session/DELETE_TASK'
 const GET_TASKS = 'session/GET_TASKS'
+const SET_COMPLETED = 'session/SET_COMPLETED'
 
 export const getTasks = (tasks) => ({
     type: GET_TASKS,
@@ -111,6 +112,28 @@ export const deleteTask = (id) => ({
     type: DELETE_TASK,
     payload: id
 })
+
+export const setCompleted = (task) => ({
+    type: SET_COMPLETED,
+    payload: task
+})
+
+
+export const setCompletedTask = (task) => async (dispatch) => {
+    const response = await fetch(`/api/tasks/${task.id}`,{
+        method: "PUT",
+        headers: {
+          'Accept': 'application/json',
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task)
+    })
+    if(response.ok) {
+        const task = await response.json();
+        await dispatch(editTask(task))
+        return task
+    }
+}
 
 export const getAllTasks = (id) => async(dispatch) => {
     const response = await fetch(`/api/events/${id}/tasks`)
@@ -244,6 +267,17 @@ export default function eventsReducer(state= initialState, action) {
                     ...state.tasks
                 }
             }
+        case SET_COMPLETED:
+            state.tasks[action.payload.id].completed = action.payload.completed
+           return {
+               ...state,
+               events: {
+                   ...state.events,
+               },
+               tasks: {
+                   ...state.tasks
+               }
+           }
         default:
         return state
     }
