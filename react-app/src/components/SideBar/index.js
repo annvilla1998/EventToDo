@@ -9,7 +9,6 @@ import { EditEvent} from '../EditEvent/index'
 import { useHistory, Link } from 'react-router-dom';
 
 
-
 export const SideBar = () => {
 
     const [showModal, setShowModal] = useState(false);
@@ -20,6 +19,8 @@ export const SideBar = () => {
     const [eventName, setEventName] = useState('')
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
+    // const [backgroundColor, setBackgroundColor] = useState("")
+    // const [textColor, setTextColor] = useState("")
 
     useEffect(() => {
         dispatch(getAllEvents())
@@ -92,6 +93,18 @@ export const SideBar = () => {
                                         value={eventName}
                                         onChange={e => setEventName(e.target.value)}
                                         />
+                                        {/* <label>Text Color</label>
+                                        <input 
+                                        type="color"
+                                        value={textColor}
+                                        onChange={e => setTextColor(e.target.value)}
+                                        />
+                                        <label>Background Color</label>
+                                        <input 
+                                        type="color"
+                                        value={backgroundColor}
+                                        onChange={e => setBackgroundColor(e.target.value)}
+                                        /> */}
                                     </form>
                                     <button className="btn" onClick={onSubmit} type="submit">Start Planning</button>
                                     </div>

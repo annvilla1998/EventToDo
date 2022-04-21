@@ -165,7 +165,7 @@ const SignUpForm = () => {
                             value={email}
                           ></input>
                         </div>
-                        <div className="login-inputs">
+                        {/* <div className="login-inputs">
                             <label>Profile Picture (Optional)</label>
                             <input
                             type='text'
@@ -174,7 +174,7 @@ const SignUpForm = () => {
                             value={profileImage}
                             onChange={e => setProfileImage(e.target.value)}
                             />
-                        </div>
+                        </div> */}
                         <div className="login-inputs">
                           <label>Password</label>
                           <input
