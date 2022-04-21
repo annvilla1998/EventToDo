@@ -83,19 +83,13 @@ export const signUp = (username, email, password, profile_image) => async (dispa
       profile_image
     }),
   });
-  
-  if (response.ok) {
-    const data = await response.json();
+   
+  const data = await response.json();
+  if(!data.errors){
     dispatch(setUser(data))
-    return null;
-  } else if (response.status < 500) {
-    const data = await response.json();
-    if (data.errors) {
-      return data.errors;
-    }
-  } else {
-    return ['An error occurred. Please try again.']
   }
+  return data;
+ 
 }
 
 export default function reducer(state = initialState, action) {

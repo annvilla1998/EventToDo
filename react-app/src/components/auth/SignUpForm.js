@@ -26,14 +26,14 @@ const SignUpForm = () => {
 
     if (password !== repeatPassword) validationErrors.push("Your passwords don't match")
 
-    // if (!email) validationErrors.push('Please provide an Email');
+    if (!email) validationErrors.push('Please provide an Email');
 
-    // if (!username) validationErrors.push('Please provide Username');
+    if (!username) validationErrors.push('Please provide Username');
 
-    // if(!email.trim()
-    // .match(/^(?!\.)[\w+\-.]+(?<!\.)@[\w-]+(\.[a-z\d-]+)*\.[a-z]+$/i)){
-    //   validationErrors.push('Please provide a valid Email');
-    // }
+    if(!email.trim()
+    .match(/^(?!\.)[\w+\-.]+(?<!\.)@[\w-]+(\.[a-z\d-]+)*\.[a-z]+$/i)){
+      validationErrors.push('Please provide a valid Email');
+    }
 
     // if(profileImage && (!profileImage.includes(".jpg")
     //  || !profileImage.endsWith(".jpeg")
@@ -43,16 +43,16 @@ const SignUpForm = () => {
     //  || !profileImage.endsWith(".pjp"))){
     //    validationErrors.push("Please provide a valid image file (.jpg, .png, .jpeg)")
     // }
-    // const isImgLink = (url) => {
-    //   if (typeof url !== 'string') {
-    //     return false;
-    //   }
-    //   return (url.match(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gmi) !== null);
-    // }
+    const isImgLink = (url) => {
+      if (typeof url !== 'string') {
+        return false;
+      }
+      return (url.match(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gmi) !== null);
+    }
 
-    // if((profileImage && !isImgLink(profileImage))){
-    //   validationErrors.push("Please provide a valid image file (.jpg, .png, .jpeg)")
-    // }
+    if((profileImage && !isImgLink(profileImage))){
+      validationErrors.push("Please provide a valid image file (.jpg, .png, .jpeg)")
+    }
     
     return validationErrors
 
@@ -87,11 +87,14 @@ const SignUpForm = () => {
     
     if(errors.length > 0) return setErrors(errors)
     
-    const data = await dispatch(signUp(username, email, password, profileImage));
-    if(data) {
-      setErrors(data)
-    }
-    setErrors([])
+    const data = await dispatch(signUp(username, email, password, profileImage)).then(data => {
+      if(data.errors){
+        setErrors(data.errors)
+      }else{
+        setErrors([])
+      }
+    })
+    
   };
 
   const updateUsername = (e) => {
