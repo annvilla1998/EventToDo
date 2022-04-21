@@ -1,5 +1,15 @@
 # EventToDo
 
+## Login
+![image](https://user-images.githubusercontent.com/88516795/164552090-671b1e40-2892-4c2a-9205-7f27d220a830.png)
+
+## Main Page
+![image](https://user-images.githubusercontent.com/88516795/164552217-4fd1fe6a-977f-4a0b-8968-71d2c69fc927.png)
+
+## Events page with listed tasks
+![image](https://user-images.githubusercontent.com/88516795/164552303-58e9b5a3-a003-4c5b-bcae-ccd562652586.png)
+
+
 ## About the app
 EventToDo is an application that serves you the ability to plan around top priorities for music events you plan on attending. Logged in users can organize their tasks in separate events and can also search them via search bar. EventToDo was inspired by [ToDoist](https://todoist.com/)
 
