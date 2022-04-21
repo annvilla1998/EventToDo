@@ -106,6 +106,7 @@ def edit_delete_task(id):
         task = Task.query.filter(Task.id == id).first()
         task.user_id = data["user_id"]
         task.name = data["name"]
+        task.due_date = data["due_date"]
         task.description = data["description"]
         task.event_id = data["event_id"]
         # task.completed = data["completed"]

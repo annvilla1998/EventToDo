@@ -23,7 +23,6 @@ export const SetCompleted = ({task}) => {
         }
         dispatch(setCompletedTask(completedTask))
     }
-    console.log(checked)
 
     return (
         <>

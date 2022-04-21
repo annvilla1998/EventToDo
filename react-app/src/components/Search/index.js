@@ -7,6 +7,7 @@ export const SearchBar = () => {
     const [tasks, setTasks] = useState([])
     const [query, setQuery] = useState("")
     const [showDropdown, setShowDropdown] = useState(false)
+    const [text, setText] = useState("")
 
     useEffect(() => {
       async function fetchData() {
@@ -48,16 +49,17 @@ export const SearchBar = () => {
     return (
         <div className="search">
             <input type="text"
-            onChange={e => setQuery(e.target.value)}
+            onChange={e => {setQuery(e.target.value);setText(e.target.value)}}
             id="search"
             placeholder="Search For Tasks"
             autoComplete='off'
+            value={text}
             onClick={() => setShowDropdown(true)}
             />
             {showDropdown && (
                 <div id="search-list" >
                     {filteredTasks.map(value => (
-                        <Link  key={value.id} onClick={() => setShowDropdown(false)} to={`/events/${value.event_id}`}>
+                        <Link  key={value.id} onClick={() => {setShowDropdown(false);setText("")}} to={`/events/${value.event_id}`}>
                             <div className="task-link-search">
                             {value.name}
                             </div>
