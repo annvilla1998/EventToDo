@@ -21,6 +21,7 @@ export const TaskList = ({events}) => {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
     const today = Date.now();
+    const event = useSelector(state => state.pageState.events[id])
 
     const validate = () => {
         const validationErrors = []
@@ -89,10 +90,11 @@ export const TaskList = ({events}) => {
         addTaskP.style.display = 'block'
     }
 
+
     return (
         <>
             <div className="tasks-container">
-                <h3>Tasks</h3>
+                <h3>To do before: {event?.name}</h3>
                     {tasks?.map(task => (
                         <div key={task?.id}>
                             <Tasks task={task} />

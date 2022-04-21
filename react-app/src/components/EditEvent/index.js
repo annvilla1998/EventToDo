@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import { Modal } from '../../context/modal';
 import { useSelector, useDispatch } from 'react-redux'
@@ -14,6 +14,7 @@ export const EditEvent = ({event}) => {
     const sessionUser = useSelector(state => state.session.user);
     const [errors, setErrors] = useState([]);
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
+    const history = useHistory();
  
     const validate = () => {
         const validationErrors = []
@@ -37,16 +38,22 @@ export const EditEvent = ({event}) => {
                 name: editedEventName,
                 user_id: sessionUser.id
             }
-            dispatch(editOneEvent(editedEvent))
-            setShowModal(false)
-            setErrors([])
-            
+            dispatch(editOneEvent(editedEvent)).then(event => {
+                if(event.errors){
+                    setErrors(event.errors)
+                }else{
+                    history.push(`/events/${event.id}`)
+                    setShowModal(false)
+                    setErrors([])
+                    setEditedEventName("")
+                }
+            })             
     }
         
 
     const handleDeleteEvent = async(e) => {
         e.preventDefault()
-        dispatch(removeEvent(event.id))
+        dispatch(removeEvent(event.id)).then(() => history.push(`/events/${event.id - 1}`))
         setShowModal(false)   
         setDeleteConfirmationModal(false)
     }

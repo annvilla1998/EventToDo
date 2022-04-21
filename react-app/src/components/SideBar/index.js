@@ -31,7 +31,7 @@ export const SideBar = () => {
         if(eventName === ""){
             validationErrors.push("Give your event a name!")
         }
-
+        
         return validationErrors
     }
 
@@ -46,11 +46,17 @@ export const SideBar = () => {
             name: eventName,
             user_id: sessionUser.id
         }
-        dispatch(createEvent(event))   
-        setShowModal(false)
-        history.push(`/events/${eventsArr[eventsArr.length - 1].id}`)
-        setEventName("")
-        setErrors([])
+        await dispatch(createEvent(event)).then(event => {
+            if(event.errors){
+                setErrors(event.errors)
+                setEventName("")
+            }else{
+                history.push(`/events/${event.id}`)
+                setShowModal(false)
+                setErrors([])
+                setEventName("")
+            }
+        }) 
     }
 
 
@@ -75,7 +81,7 @@ export const SideBar = () => {
                                     <div className="new-event-form">
                                     <form>
                                         <div id="errors">
-                                            {errors.map((error, ind) => (
+                                            {errors?.map((error, ind) => (
                                                 <div key={ind}>{error}</div>
                                             ))}
                                         </div>
