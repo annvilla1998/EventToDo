@@ -65,29 +65,29 @@ def sign_up():
     if(existing_username or existing_email):
         return {"errors": ["User already exists"]}
     else:
-        if data["profile_image"] == "":
-            profile_image = "https://st3.depositphotos.com/3854637/31995/v/1600/depositphotos_319955714-stock-illustration-asian-man-listen-music-headphones.jpg"
-            user = User(
-                username=data['username'],
-                email=data['email'],
-                password=data['password'],
-                profile_image=profile_image
-            )
-            db.session.add(user)
-            db.session.commit()
-            login_user(user)
-            return user.to_dict()
-        else:
-            user = User(
-                username=data['username'],
-                email=data['email'],
-                password=data['password'],
-                profile_image=data["profile_image"]
-            )
-            db.session.add(user)
-            db.session.commit()
-            login_user(user)
-            return user.to_dict()
+        # if data["profile_image"] == "":
+        profile_image = "https://st3.depositphotos.com/3854637/31995/v/1600/depositphotos_319955714-stock-illustration-asian-man-listen-music-headphones.jpg"
+        user = User(
+            username=data['username'],
+            email=data['email'],
+            password=data['password'],
+            profile_image=profile_image
+        )
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        return user.to_dict()
+        # else:
+            # user = User(
+            #     username=data['username'],
+            #     email=data['email'],
+            #     password=data['password'],
+            #     profile_image=data["profile_image"]
+            # )
+            # db.session.add(user)
+            # db.session.commit()
+            # login_user(user)
+            # return user.to_dict()
 
 
 @auth_routes.route('/unauthorized')
