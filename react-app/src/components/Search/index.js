@@ -50,7 +50,7 @@ export const SearchBar = () => {
             <input type="text"
             onChange={e => setQuery(e.target.value)}
             id="search"
-            placeholder="Search"
+            placeholder="Search For Tasks"
             autoComplete='off'
             onClick={() => setShowDropdown(true)}
             />
