@@ -102,7 +102,16 @@
     border-radius: 5px;
     color: white;
     margin-top:5px;
+    letter-spacing: 2px;
+    border: 1px solid white;
+    transition: all .5s ease-in-out;
 }
+
+.btn:hover {
+    transform: scale(1.1)
+}
+
+  
 
 .signupLink {
     border-top: 1px solid black;
@@ -203,3 +212,10 @@ footer {
     margin: 0px 40px;
 }
 
+.tech-icons{
+    transition: all .5s ease-in-out;
+}
+
+.tech-icons:hover {
+    transform: scale(1.5)
+}

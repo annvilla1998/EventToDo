@@ -64,6 +64,7 @@
 
 .event-link a:hover {
     opacity: 0.5;
+    transform: translateY(-10px);
 }
 
 .event-link:hover i {

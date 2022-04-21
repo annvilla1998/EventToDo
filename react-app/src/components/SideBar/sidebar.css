@@ -39,6 +39,7 @@
     color: black;
     padding-left: 15px;
     padding-bottom: 5px;
+    transition: transform 250ms;
 }
 
 
@@ -56,7 +57,9 @@
 
 .event-form-modal h3 {
     margin: 0px;
+    /* transition: transform 250ms; */
 }
+
 
 
 .event-form-modal form {
@@ -101,10 +104,12 @@
 
 .add-event-h3 i {
     font-size:35px;
+    transition: transform 250ms;
 }
 
 .add-event-h3 i:hover {
     opacity: 0.5;
+    transform: translateY(-10px);
 }
 
 .today-link a {
@@ -114,6 +119,9 @@
 
 .today-link h3 {
     margin: 20px;
-
+    transition: transform 250ms;
 }
 
+.today-link h3:hover {
+    transform: translateY(-10px);
+}

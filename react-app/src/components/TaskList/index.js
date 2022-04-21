@@ -127,8 +127,8 @@ export const TaskList = ({events}) => {
                         selected={dueDate} 
                         onChange={(date) => setDueDate(date)} 
                         />
-                        <button onClick={addTask}>Add Task</button>
-                        <button onClick={cancelForm}>Cancel</button>
+                        <button className="btn" onClick={addTask}>Add Task</button>
+                        <button className="btn" onClick={cancelForm}>Cancel</button>
                     </form> 
                 </div>
             </div>

@@ -93,7 +93,7 @@ export const SideBar = () => {
                                         onChange={e => setEventName(e.target.value)}
                                         />
                                     </form>
-                                    <button onClick={onSubmit} type="submit">Start Planning</button>
+                                    <button className="btn" onClick={onSubmit} type="submit">Start Planning</button>
                                     </div>
                                 </div>
                             </ Modal>

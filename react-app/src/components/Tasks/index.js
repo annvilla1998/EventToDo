@@ -103,8 +103,10 @@ export const Tasks = ({task}) => {
                                         selected={editedDueDate} 
                                         onChange={(date) => setEditedDueDate(date)} 
                                         />
-                                        <button onClick={handleEditTask}>Edit Task</button>
-                                        <button onClick={cancelForm}>Cancel</button>
+                                        <div className="delete-confirmation-buttons">
+                                            <button className="btn" onClick={handleEditTask}>Edit Task</button>
+                                            <button className="btn" onClick={cancelForm}>Cancel</button>
+                                        </div>
                                     </form> 
                                 </div>
                             </Modal>
@@ -115,8 +117,8 @@ export const Tasks = ({task}) => {
                             <div className="delete-confirmation-modal">
                                 Are you sure?
                                 <div className="delete-confirmation-buttons">
-                                    <button onClick={handleDeleteTask}>Delete</button>
-                                    <button onClick={() => setDeleteConfirmationModal(false)} >Cancel</button>
+                                    <button className="btn" onClick={handleDeleteTask}>Delete</button>
+                                    <button className="btn" onClick={() => setDeleteConfirmationModal(false)} >Cancel</button>
                                 </div>
                             </div>
                         </Modal>
