@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { setCompletedTask } from '../../store/events'
 import { useDispatch } from 'react-redux'
 
