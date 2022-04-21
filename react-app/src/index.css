@@ -17,3 +17,56 @@
 .out {
   display:flex;
 }
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.task-checkbox:checked {
+  animation: shrink-bounce 200ms cubic-bezier(.4,.0,.23,1);
+
+}
+
+.task-checkbox:checked::after{
+  content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #00A173;
+    border-top: none;
+    border-right: none;
+    border-radius: 5px;
+}
+
+@keyframes shrink-bounce{
+  0%{
+    transform: scale(1);
+  }
+  33%{    
+    transform: scale(.35);
+  }
+  100%{
+    transform: scale(1);    
+  }
+}
+/* @keyframes checkbox-check{
+  0%{
+    width: 0;
+    height: 0;
+    border-color: #212121;
+    transform: translate3d(0,0,0) rotate(45deg);
+  }
+  33%{
+    width: .2em;
+    height: 0;
+    transform: translate3d(0,0,0) rotate(45deg);
+  }
+  100%{    
+    width: .2em;
+    height: .5em;    
+    border-color: #212121;
+    transform: translate3d(0,-.5em,0) rotate(45deg);
+  }
+} */
