@@ -15,7 +15,14 @@ export const SetCompleted = ({task}) => {
         }
         dispatch(setCompletedTask(completedTask))
     }, [checked, dispatch,task.id])
-    
+    console.log(checked)
+    // const onChange = async() => {
+    //     const completedTask = {
+    //         id: task.id,
+    //         completed: checked
+    //     }
+    //     dispatch(setCompletedTask(completedTask))
+    // }
 
     return (
         <>
