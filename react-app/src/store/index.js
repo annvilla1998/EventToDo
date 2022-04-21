@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import session from './session'
 import eventsReducer from './events';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   session,
   pageState: eventsReducer,
 
