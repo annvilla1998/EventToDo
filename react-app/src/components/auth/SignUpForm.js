@@ -14,7 +14,7 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [profileImage, setProfileImage] = useState('')
+  // const [profileImage, setProfileImage] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -43,16 +43,16 @@ const SignUpForm = () => {
     //  || !profileImage.endsWith(".pjp"))){
     //    validationErrors.push("Please provide a valid image file (.jpg, .png, .jpeg)")
     // }
-    const isImgLink = (url) => {
-      if (typeof url !== 'string') {
-        return false;
-      }
-      return (url.match(/^http[^?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gmi) !== null);
-    }
+    // const isImgLink = (url) => {
+    //   if (typeof url !== 'string') {
+    //     return false;
+    //   }
+    //   return (url.match(/^http[^?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gmi) !== null);
+    // }
 
-    if((profileImage && !isImgLink(profileImage))){
-      validationErrors.push("Please provide a valid image file (.jpg, .png, .jpeg)")
-    }
+    // if((profileImage && !isImgLink(profileImage))){
+    //   validationErrors.push("Please provide a valid image file (.jpg, .png, .jpeg)")
+    // }
     
     return validationErrors
 
@@ -87,7 +87,7 @@ const SignUpForm = () => {
     
     if(errors.length > 0) return setErrors(errors)
     
-    await dispatch(signUp(username, email, password, profileImage)).then(data => {
+    await dispatch(signUp(username, email, password)).then(data => {
       if(data.errors){
         setErrors(data.errors)
       }else{
