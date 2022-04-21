@@ -59,15 +59,18 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
-    form = SignUpForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        if form.data["profile_image"] == "":
+    data = request.get_json(force=True)
+    existing_email = User.query.filter(User.email == data['email']).first()
+    existing_username = User.query.filter(User.username == data['username']).first()
+    if(existing_username or existing_email):
+        return {"errors": ["User already exists"]}
+    else:
+        if data["profile_image"] == "":
             profile_image = "https://st3.depositphotos.com/3854637/31995/v/1600/depositphotos_319955714-stock-illustration-asian-man-listen-music-headphones.jpg"
             user = User(
-                username=form.data['username'],
-                email=form.data['email'],
-                password=form.data['password'],
+                username=data['username'],
+                email=data['email'],
+                password=data['password'],
                 profile_image=profile_image
             )
             db.session.add(user)
@@ -76,16 +79,15 @@ def sign_up():
             return user.to_dict()
         else:
             user = User(
-                username=form.data['username'],
-                email=form.data['email'],
-                password=form.data['password'],
-                profile_image=form.data["profile_image"]
+                username=data['username'],
+                email=data['email'],
+                password=data['password'],
+                profile_image=data["profile_image"]
             )
             db.session.add(user)
             db.session.commit()
             login_user(user)
             return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @auth_routes.route('/unauthorized')
