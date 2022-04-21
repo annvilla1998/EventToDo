@@ -38,10 +38,16 @@ export const EditEvent = ({event}) => {
                 name: editedEventName,
                 user_id: sessionUser.id
             }
-            dispatch(editOneEvent(editedEvent))
-            setShowModal(false)
-            setErrors([])
-            
+            dispatch(editOneEvent(editedEvent)).then(event => {
+                if(event.errors){
+                    setErrors(event.errors)
+                }else{
+                    history.push(`/events/${event.id}`)
+                    setShowModal(false)
+                    setErrors([])
+                    setEditedEventName("")
+                }
+            })             
     }
         
 

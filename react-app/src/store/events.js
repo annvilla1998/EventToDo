@@ -70,26 +70,30 @@ export const createEvent = (data) => async (dispatch) => {
     //   }
 }
 
-export const editOneEvent = (event) => async (dispatch) => {
-    const res = await fetch(`/api/events/${event.id}`,{
+export const editOneEvent = (data) => async (dispatch) => {
+    const res = await fetch(`/api/events/${data.id}`,{
         method: "PUT",
         headers: {
           'Accept': 'application/json',
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(event)
+        body: JSON.stringify(data)
       })
-
-    if(res.ok) {
-        const event = await res.json()
-        await dispatch(editEvent(event))
-        return event
-    }else{
-        const data = await res.json();
-        if (data.errors) {
-          return data.errors;
-        }
+      const event = await res.json()
+      if(!event.errors) {
+          dispatch(addEvent(event))
       }
+      return event
+    // if(res.ok) {
+    //     const event = await res.json()
+    //     await dispatch(editEvent(event))
+    //     return event
+    // }else{
+    //     const data = await res.json();
+    //     if (data.errors) {
+    //       return data.errors;
+    //     }
+    //   }
 }
 
 

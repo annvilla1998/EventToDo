@@ -31,17 +31,17 @@ def post_event():
     # form = EventForm()
     # form['csrf_token'].data = request.cookies['csrf_token']
     # if form.validate_on_submit():
-    existing_event = Event.query.filter(Event.name == data['name'], Event.user_id == current_user.id)
+    existing_event = Event.query.filter(Event.name == data['name'] and Event.user_id == current_user.id).first()
     if(existing_event):
         return {"errors" : ["Event already exists"]}
-    
-    new_event = Event(
-        name = data["name"],
-        user_id = data["user_id"],
-    )
-    db.session.add(new_event)
-    db.session.commit()
-    return new_event.to_dict()
+    else:
+        new_event = Event(
+            name = data["name"],
+            user_id = data["user_id"],
+        )
+        db.session.add(new_event)
+        db.session.commit()
+        return new_event.to_dict()
     # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -49,9 +49,13 @@ def post_event():
 def edit_delete_event(id):
     if request.method == "PUT":
         data = request.get_json(force=True)
-        form = EventForm()
-        form['csrf_token'].data = request.cookies['csrf_token']
-        if form.validate_on_submit():
+        # form = EventForm()
+        # form['csrf_token'].data = request.cookies['csrf_token']
+        # if form.validate_on_submit():
+        existing_event = Event.query.filter(Event.name == data['name'] and Event.user_id == current_user.id).first()
+        if(existing_event):
+            return {"errors" : ["Event already exists"]}
+        else:
             event = Event.query.filter(Event.id == id).first()
             event.user_id = data["user_id"]
             event.name = data["name"]
@@ -59,7 +63,7 @@ def edit_delete_event(id):
             db.session.add(event)
             db.session.commit()
             return event.to_dict()
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     
     elif request.method == "DELETE":
         event = Event.query.filter(Event.id == id).first()

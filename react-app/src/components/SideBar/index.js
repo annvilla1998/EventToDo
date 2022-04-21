@@ -49,10 +49,12 @@ export const SideBar = () => {
         await dispatch(createEvent(event)).then(event => {
             if(event.errors){
                 setErrors(event.errors)
+                setEventName("")
             }else{
                 history.push(`/events/${event.id}`)
                 setShowModal(false)
                 setErrors([])
+                setEventName("")
             }
         }) 
     }
