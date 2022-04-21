@@ -118,7 +118,7 @@
 
 .edit-task-form {
     width: 450px;
-    height: 60vh;
+    height: 40vh;
     background-color:white;
     display: flex;
     justify-content: center;
@@ -134,7 +134,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
+    align-items: stretch;
 }
 
 .edit-task-form input {
@@ -180,7 +180,7 @@
 .delete-confirmation-buttons {
     display:flex;
     gap: 20px;
-    
+    justify-content:center;
 }
 
 

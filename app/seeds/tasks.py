@@ -5,13 +5,13 @@ faker = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_tasks():
-    for _ in range(40):
+    for _ in range(50):
         task = Task(
-            name = "Book Flight",
-            description = "check deals on travelocity",
+            name = faker.random_element(['Book Flight', 'Get Tickets', 'Buy Outfit', 'Buy Portable Charger', 'Book Hotel Room']),
+            description = "",
             completed = False, 
             due_date = faker.future_datetime(),
-            event_id = faker.random_int(min=1, max=40),
+            event_id = faker.random_int(min=1, max=20),
             user_id = 1
         )
 

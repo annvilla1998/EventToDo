@@ -5,7 +5,7 @@ faker = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_events():
-    for _ in range(40):
+    for _ in range(20):
         event = Event(
             name = (faker.name() + ' Concert'),
             user_id = 1

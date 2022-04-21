@@ -84,16 +84,16 @@ export const EditEvent = ({event}) => {
                             />
                         </form>
                         <div className="edit-delete-buttons">
-                            <button onClick={handleEditEvent} type="submit">Edit</button>
-                            <button onClick={() => setDeleteConfirmationModal(true)} type="submit">Delete</button>
+                            <button className="btn" onClick={handleEditEvent} type="submit">Edit</button>
+                            <button className="btn" onClick={() => setDeleteConfirmationModal(true)} type="submit">Delete</button>
                         </div>
                         {deleteConfirmationModal && (
                         <Modal onClose={() =>setDeleteConfirmationModal(false)}>
                             <div className="delete-confirmation-modal">
                                 Are you sure?
                                 <div className="delete-confirmation-buttons">
-                                    <button onClick={handleDeleteEvent}>Delete</button>
-                                    <button onClick={() => setDeleteConfirmationModal(false)} >Cancel</button>
+                                    <button className="btn" onClick={handleDeleteEvent}>Delete</button>
+                                    <button className="btn" onClick={() => setDeleteConfirmationModal(false)} >Cancel</button>
                                 </div>
                             </div>
                         </Modal>
