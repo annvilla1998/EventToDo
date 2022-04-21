@@ -10,7 +10,7 @@ def seed_tasks():
             name = faker.random_element(['Book Flight', 'Get Tickets', 'Buy Outfit', 'Buy Portable Charger', 'Book Hotel Room']),
             description = "",
             completed = False, 
-            due_date = faker.future_datetime(),
+            due_date = faker.datetime(),
             event_id = faker.random_int(min=1, max=20),
             user_id = 1
         )
