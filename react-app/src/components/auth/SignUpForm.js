@@ -91,7 +91,7 @@ const SignUpForm = () => {
     if(data) {
       setErrors(data)
     }
-    // setErrors([])
+    setErrors([])
   };
 
   const updateUsername = (e) => {

@@ -43,24 +43,31 @@ export const getAllEvents = () => async (dispatch) => {
     }
 }
 
-export const createEvent = (event) => async (dispatch) => {
+export const createEvent = (data) => async (dispatch) => {
     const res = await fetch(`/api/events/`, {
         method: "POST",
         headers: {
             'Accept': 'application/json',
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(event)
+        body: JSON.stringify(data)
     })
-    if(res.ok) {
-        const event = await res.json()
-        await dispatch(addEvent(event))
-    }else {
-        const data = await res.json();
-        if (data.errors) {
-          return data.errors;
-        }
-      }
+    const event = await res.json()
+    if(!event.errors) {
+        dispatch(addEvent(event))
+    }
+    return event
+
+    // if(res.ok) {
+    //     const event = await res.json()
+    //     await dispatch(addEvent(event))
+    //     return event
+    // }else {
+    //     const data = await res.json();
+    //     if (data.errors) {
+    //       return data.errors;
+    //     }
+    //   }
 }
 
 export const editOneEvent = (event) => async (dispatch) => {

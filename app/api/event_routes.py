@@ -28,18 +28,21 @@ def get_events():
 @event_routes.route('/', methods=["POST"])
 def post_event():
     data = request.get_json(force=True)
-    form = EventForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-
-        new_event = Event(
-            name = data["name"],
-            user_id = data["user_id"],
-        )
-        db.session.add(new_event)
-        db.session.commit()
-        return new_event.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    # form = EventForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit():
+    existing_event = Event.query.filter(Event.name == data['name'], Event.user_id == current_user.id)
+    if(existing_event):
+        return {"errors" : ["Event already exists"]}
+    
+    new_event = Event(
+        name = data["name"],
+        user_id = data["user_id"],
+    )
+    db.session.add(new_event)
+    db.session.commit()
+    return new_event.to_dict()
+    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @event_routes.route('/<id>', methods=["PUT","DELETE"])
