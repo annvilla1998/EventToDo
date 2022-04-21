@@ -13,7 +13,7 @@ export const Tasks = ({task}) => {
     const [errors, setErrors] = useState([]);
     const [editedTaskName, setEditedTaskName] = useState(task.name)
     const [editedTaskDescription, setEditedTaskDescription] = useState(task.description)
-    const [editedDueDate, setEditedDueDate] = useState(new Date(task.due_date))
+    const [editedDueDate, setEditedDueDate] = useState(new Date())
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
@@ -46,6 +46,7 @@ export const Tasks = ({task}) => {
                 id: task.id,
                 name: editedTaskName,
                 description: editedTaskDescription,
+                due_date: editedDueDate,
                 user_id: sessionUser.id,
                 event_id: task.event_id,
                 // completed: checkbox.checked
