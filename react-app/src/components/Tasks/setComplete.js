@@ -39,6 +39,7 @@ export const SetCompleted = ({task}) => {
                 onChange={onChange}
                 checked={checked}
                 />
+           
         </>
     )
 }
