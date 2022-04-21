@@ -47,7 +47,7 @@ const SignUpForm = () => {
       if (typeof url !== 'string') {
         return false;
       }
-      return (url.match(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gmi) !== null);
+      return (url.match(/^http[^?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gmi) !== null);
     }
 
     if((profileImage && !isImgLink(profileImage))){
@@ -87,7 +87,7 @@ const SignUpForm = () => {
     
     if(errors.length > 0) return setErrors(errors)
     
-    const data = await dispatch(signUp(username, email, password, profileImage)).then(data => {
+    await dispatch(signUp(username, email, password, profileImage)).then(data => {
       if(data.errors){
         setErrors(data.errors)
       }else{
