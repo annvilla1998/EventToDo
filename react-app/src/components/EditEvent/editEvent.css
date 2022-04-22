@@ -56,6 +56,17 @@
     /* margin: 20px */
 }
 
+.event-link-container {
+    display: flex;
+    width: 270px;
+    justify-content:space-between;
+}
+
+#num-tasks {
+    color: #00A173;
+    font-weight: bold;
+}
+
 .event-link i {
     display:none;
     padding-right: 20px;

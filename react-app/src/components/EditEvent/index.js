@@ -57,11 +57,16 @@ export const EditEvent = ({event}) => {
         setShowModal(false)   
         setDeleteConfirmationModal(false)
     }
-
+// console.log(Object.values(event.tasks).length - 1)
     return (
         <>
         <div className="event-link">
-            <Link to={`/events/${event.id}`}>{event.name}</Link>
+            <Link to={`/events/${event.id}`}>
+                <div className="event-link-container">
+                    <div>{event.name}</div>
+                    <div id="num-tasks">{Object.values(event.tasks).length}</div>
+                </div>
+                </Link>
             <i onClick={() => setShowModal(true)} className="fa-solid fa-ellipsis"></i>
         </div>
             
