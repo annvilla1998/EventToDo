@@ -1,0 +1,72 @@
+.loading-page-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#ddd; 
+}
+
+span{
+    width:20px;
+    height:30px;
+    margin-left: 1px;
+    background-color: #00EDAA;
+    display: inline-block;
+    transform-style:preserve-3d;
+    animation: music 1.5s infinite ease-in-out;
+}
+
+span:nth-of-type(2){
+    animation-delay: 0.2s;    
+}
+
+span:nth-of-type(3){
+    animation-delay: .4s;
+}
+
+span:nth-of-type(4){
+    animation-delay: .6s;
+}
+
+span:nth-of-type(5){
+    animation-delay:.8s;
+}
+
+span:nth-of-type(6){
+    animation-delay:1s;
+}
+
+span:nth-of-type(7){
+    animation-delay:1.2s;
+}
+
+span:nth-of-type(8){
+    animation-delay:1.4s;
+}
+
+span:nth-of-type(9){
+    animation-delay:1.6s;
+}
+
+span:last-of-type{
+    animation-delay: 1.8s;
+}
+@keyframes music{
+    0%{
+        height: 50px;
+        background-color: #006145;
+    }   
+    25%{
+    height:75px;
+    transform:translateZ(30px);
+    background-color: #00A173;
+    }   
+    50%{
+        height: 100px;
+        background-color: #00C78F;
+}
+    75%{
+        background-color: #00E0A1;
+}
+}
