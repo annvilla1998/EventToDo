@@ -37,6 +37,8 @@ def post_event():
     else:
         new_event = Event(
             name = data["name"],
+            text_color = data["text_color"],
+            background_color = data["background_color"],
             user_id = data["user_id"],
         )
         db.session.add(new_event)
@@ -52,17 +54,19 @@ def edit_delete_event(id):
         # form = EventForm()
         # form['csrf_token'].data = request.cookies['csrf_token']
         # if form.validate_on_submit():
-        existing_event = Event.query.filter(Event.name == data['name'] and Event.user_id == current_user.id).first()
-        if(existing_event):
-            return {"errors" : ["Event already exists"]}
-        else:
-            event = Event.query.filter(Event.id == id).first()
-            event.user_id = data["user_id"]
-            event.name = data["name"]
+        # existing_event = Event.query.filter(Event.name == data['name'] and Event.user_id == current_user.id).first()
+        # if(existing_event):
+        #     return {"errors" : ["Event already exists"]}
+        # else:
+        event = Event.query.filter(Event.id == id).first()
+        event.user_id = data["user_id"]
+        event.text_color = data["text_color"]
+        event.background_color = data["background_color"]
+        event.name = data["name"]
 
-            db.session.add(event)
-            db.session.commit()
-            return event.to_dict()
+        db.session.add(event)
+        db.session.commit()
+        return event.to_dict()
         # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     
     elif request.method == "DELETE":

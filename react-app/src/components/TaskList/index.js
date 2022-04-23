@@ -93,7 +93,7 @@ export const TaskList = ({events}) => {
 
     return (
         <>
-            <div className="tasks-container">
+            <div style={{backgroundColor:event?.background_color,color:event?.text_color}} className="tasks-container">
                 <h3>To do before: {event?.name}</h3>
                     {tasks?.map(task => (
                         <div key={task?.id}>
