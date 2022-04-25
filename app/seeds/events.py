@@ -5,15 +5,40 @@ faker = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_events():
-    for _ in range(10):
-        event = Event(
-            name = (faker.name() + ' Concert'),
-            user_id = 1
-        )
+    # for _ in range(10):
+    #     event = Event(
+    #         name = (faker.name() + ' Concert'),
+    #         user_id = 1
+    #     )
 
-        db.session.add(event)
-        db.session.commit()
-
+    #     db.session.add(event)
+    #     db.session.commit()
+    event1 = Event(
+        name = "Coachella",
+        user_id = 1
+    )
+    event2 = Event(
+        name = "Stagecoach",
+        user_id = 1
+    )
+    event3 = Event(
+        name = "EDC",
+        user_id = 1
+    )
+    event4 = Event(
+        name = "Cali Vibe",
+        user_id = 1
+    )
+    event5 = Event(
+        name = (faker.name() + ' Concert'), 
+        user_id = 1
+    )
+    db.session.add(event1)
+    db.session.add(event2)
+    db.session.add(event3)
+    db.session.add(event4)
+    db.session.add(event5)
+    db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
