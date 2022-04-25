@@ -24,6 +24,8 @@ const SignUpForm = () => {
   const validate = () => {
     const validationErrors = []
 
+    if (!password) validationErrors.push('Please provide a Password')
+
     if (password !== repeatPassword) validationErrors.push("Your passwords don't match")
 
     if (!email) validationErrors.push('Please provide an Email');
