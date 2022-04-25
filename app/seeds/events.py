@@ -8,8 +8,8 @@ def seed_events():
     for _ in range(10):
         event = Event(
             name = (faker.name() + ' Concert'),
-            text_color='black',
-            background_color='white',
+            text_color='#000000',
+            background_color='#FFFFFF',
             user_id = 1
         )
 

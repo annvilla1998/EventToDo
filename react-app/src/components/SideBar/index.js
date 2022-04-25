@@ -20,8 +20,8 @@ export const SideBar = () => {
     const [eventName, setEventName] = useState('')
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
-    const [backgroundColor, setBackgroundColor] = useState("")
-    const [textColor, setTextColor] = useState("")
+    const [backgroundColor, setBackgroundColor] = useState("#FFFFFF")
+    const [textColor, setTextColor] = useState("#000000")
     
 
     useEffect(() => {
