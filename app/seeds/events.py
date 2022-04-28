@@ -5,32 +5,55 @@ faker = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_events():
+
+#     for _ in range(10):
+#         event = Event(
+#             name = (faker.name() + ' Concert'),
+#             text_color='#000000',
+#             background_color='#FFFFFF',
+#             user_id = 1
+#         )
+
+#         db.session.add(event)
+#         db.session.commit()
+
     # for _ in range(10):
     #     event = Event(
     #         name = (faker.name() + ' Concert'),
     #         user_id = 1
     #     )
 
+
     #     db.session.add(event)
     #     db.session.commit()
     event1 = Event(
         name = "Coachella",
+        text_color='#000000',
+        background_color='#FFFFFF',
         user_id = 1
     )
     event2 = Event(
         name = "Stagecoach",
+        text_color='#000000',
+        background_color='#FFFFFF',
         user_id = 1
     )
     event3 = Event(
         name = "EDC",
+        text_color='#000000',
+        background_color='#FFFFFF',
         user_id = 1
     )
     event4 = Event(
         name = "Cali Vibe",
+        text_color='#000000',
+        background_color='#FFFFFF',
         user_id = 1
     )
     event5 = Event(
         name = (faker.name() + ' Concert'), 
+        text_color='#000000',
+        background_color='#FFFFFF',
         user_id = 1
     )
     db.session.add(event1)

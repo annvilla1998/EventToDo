@@ -1,13 +1,21 @@
+.task-list {
+    margin-right: 100px;
+}
 
 .tasks-container {
     display:flex;
     flex-direction: column;
     min-width: 70vw;
-    width: 100%;
+    width: 85vw;
     height: auto;
     align-items: center;
     gap: 10px;
     padding-top: 68px;
+    margin-right: 500px;
+}
+
+.tasks-container h3{
+    margin-right: 100px;
 }
 
 .task-list-container {
@@ -56,6 +64,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-right: 100px;
 }
 
 
@@ -83,6 +92,7 @@
     width: 150px;
     justify-content:center;
     align-items: center;
+    margin-right: 100px;
 }
 
 

@@ -15,6 +15,8 @@ export const EditEvent = ({event}) => {
     const [errors, setErrors] = useState([]);
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
     const history = useHistory();
+    const [backgroundColor, setBackgroundColor] = useState(event.background_color)
+    const [textColor, setTextColor] = useState(event.text_color)
  
     const validate = () => {
         const validationErrors = []
@@ -36,6 +38,8 @@ export const EditEvent = ({event}) => {
             const editedEvent = {
                 id: event.id,
                 name: editedEventName,
+                text_color: textColor,
+                background_color: backgroundColor,
                 user_id: sessionUser.id
             }
             dispatch(editOneEvent(editedEvent)).then(event => {
@@ -45,7 +49,7 @@ export const EditEvent = ({event}) => {
                     history.push(`/events/${event.id}`)
                     setShowModal(false)
                     setErrors([])
-                    setEditedEventName("")
+                    // setEditedEventName("")
                 }
             })             
     }
@@ -86,6 +90,18 @@ export const EditEvent = ({event}) => {
                             type='text'
                             value={editedEventName}
                             onChange={e => setEditedEventName(e.target.value)}
+                            />
+                            <label>Text Color</label>
+                            <input 
+                            type="color"
+                            value={textColor}
+                            onChange={e => setTextColor(e.target.value)}
+                            />
+                            <label>Background Color</label>
+                            <input 
+                            type="color"
+                            value={backgroundColor}
+                            onChange={e => setBackgroundColor(e.target.value)}
                             />
                         </form>
                         <div className="edit-delete-buttons">
