@@ -8,11 +8,11 @@ faker = Faker()
 def seed_tasks():
     for _ in range(30):
         task = Task(
-            name = faker.random_element(['Book Flight', 'Get Tickets', 'Buy Outfit', 'Buy Portable Charger', 'Book Hotel Room']),
+            name = faker.random_element(['Pack','Book Flight', 'Get Tickets', 'Buy Outfit', 'Buy Portable Charger', 'Book Hotel Room']),
             description = "",
             completed = False, 
             due_date = faker.future_date(),
-            event_id = faker.random_int(min=1, max=10),
+            event_id = faker.random_int(min=1, max=5),
             user_id = 1
         )
 
@@ -25,7 +25,7 @@ def seed_tasks():
             description = "",
             completed = False, 
             due_date = datetime.today(),
-            event_id = faker.random_int(min=1, max=10),
+            event_id = faker.random_int(min=1, max=5),
             user_id = 1
         )
 

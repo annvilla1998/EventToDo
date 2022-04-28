@@ -24,6 +24,8 @@ const SignUpForm = () => {
   const validate = () => {
     const validationErrors = []
 
+    if (!password) validationErrors.push('Please provide a Password')
+
     if (password !== repeatPassword) validationErrors.push("Your passwords don't match")
 
     if (!email) validationErrors.push('Please provide an Email');
@@ -193,7 +195,7 @@ const SignUpForm = () => {
                             placeholder="Confirm Password"
                             onChange={updateRepeatPassword}
                             value={repeatPassword}
-                            required={true}
+                            // required={true}
                           ></input>
                         </div>
                         <button className="btn" type='submit'>Sign Up</button>
