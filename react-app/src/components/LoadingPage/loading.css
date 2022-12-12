@@ -52,6 +52,7 @@ span:nth-of-type(9){
 span:last-of-type{
     animation-delay: 1.8s;
 }
+
 @keyframes music{
     0%{
         height: 50px;
